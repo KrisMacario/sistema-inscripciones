@@ -35,7 +35,12 @@
             margin: 20px;
         }
 
-        .container{
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .card{
             text-align: center;
             background: #f5f5f5ff;
             max-width: 350px;
@@ -75,56 +80,95 @@
             cursor: pointer;
         }
 
-        #btn-salir{
-            position: fixed;
-            margin: 0px 10px;
-        }
+        /* Navegación */
+    nav {
+      background: #4A90A4;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        #btn-salir button{
-            font-size: 20px;
-            padding: 5px 15px;
-            border: none;
-            border-radius: 60%;
-            background-color: #ff4d4d;
-            color: white;
-            cursor: pointer;
-        }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .nav-brand {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-menu a:hover {
+      color: #F4E4A6;
+    }
 
     </style>
+    <!-- Navegación -->
+    <nav id="inicio">
+        <div class="container">
+            <div class="nav-container">
+                <div class="nav-brand">
+                ROSALINDA<br>
+                GUERRERO<br>
+                GAMBOA
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="vista-admin-inicio.html">INICIO</a></li>
+                    <li><a href="vista-admin-inscripciones.html">INSCRIPCIONES</a></li>
+                    <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
+               </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Botón de salir -->
-    <div id="btn-salir">
-        <button onclick="window.location.href='vista-admin-usuarios.html'"> X </button>
-    </div>
+    <!-- Cuerpo -->
+    <section id="sistema-escolar" class="sistema-escolar">
+        <div class="container">
+            <h1>Usuarios</h1>
+            <a>Agregar usuario</a>
+        </div>
+        <main>
+            <?php
+                $conexion = new mysqli("localhost", "root", "", "sistema_inc");
+                if ($conexion->connect_error) {
+                    die("Error de conexión: " . $conexion->connect_error);
+                }
+                $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol";
+                $resultado = $conexion->query($sql_verificar);
+                //la condicion while es para recorrer todas las filas del resultado y mostrarlas
+                while ($row = $resultado->fetch_assoc()){ //mientras haya filas en el resultado
+                    echo "<div class='container'>". //se muestra el id del usuario
+                    "<div class='card'>".
+                    "<img src='https://bcw-media.s3.ap-northeast-1.amazonaws.com/large_Realistic_255556586487996_2736534a2a.jpg' alt='usuario'>".
+                    "<h2>". htmlspecialchars($row["nombre"])."</h2>". //el htmlspecialchars es para evitar inyecciones de codigo, como <script>
+                    "<h3>". htmlspecialchars($row["nombre_rol"])."</h3>".
+                    '<button onclick="window.location.href=\'vista-admin-perfil-usuario.php?pk_usuario='. $row["pk_usuario"] . '\'"> Ver perfil </button>'.
+                    "</div>".
+                    "</div>";
+                }
+            ?>
+        </main>
+    </section>
 
-    <h1>Lista de usuarios</h1>
-
-    <main>
-
-        <?php
-
-            $conexion = new mysqli("localhost", "root", "", "sistema_inc");
-
-            if ($conexion->connect_error) {
-                die("Error de conexión: " . $conexion->connect_error);
-            }
-
-            $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol";
-            $resultado = $conexion->query($sql_verificar);
-
-            //la condicion while es para recorrer todas las filas del resultado y mostrarlas
-            while ($row = $resultado->fetch_assoc()){ //mientras haya filas en el resultado
-                echo "<div class='container'>". //se muestra el id del usuario
-                "<img src='https://bcw-media.s3.ap-northeast-1.amazonaws.com/large_Realistic_255556586487996_2736534a2a.jpg' alt='usuario'>".
-                "<h2>". htmlspecialchars($row["nombre"])."</h2>". //el htmlspecialchars es para evitar inyecciones de codigo, como <script>
-                "<h3>". htmlspecialchars($row["nombre_rol"])."</h3>".
-                '<button onclick="window.location.href=\'vista-admin-perfil-usuario.php?pk_usuario='. $row["pk_usuario"] . '\'"> Ver perfil </button>'.
-                "</div>";
-            }
-
-        ?>
-
-    </main>
+    
 
 
 </body>
