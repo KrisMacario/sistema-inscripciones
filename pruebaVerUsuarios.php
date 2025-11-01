@@ -37,7 +37,7 @@
 
         .container{
             text-align: center;
-            background: red;
+            background: #f5f5f5ff;
             max-width: 350px;
             height: 500px;
             margin: 80px 50px;
@@ -48,6 +48,7 @@
 
         h1{
             text-align: center;
+            margin-top: 20px;
         }
 
         h2, h3{
@@ -74,7 +75,27 @@
             cursor: pointer;
         }
 
+        #btn-salir{
+            position: fixed;
+            margin: 0px 10px;
+        }
+
+        #btn-salir button{
+            font-size: 20px;
+            padding: 5px 15px;
+            border: none;
+            border-radius: 60%;
+            background-color: #ff4d4d;
+            color: white;
+            cursor: pointer;
+        }
+
     </style>
+
+    <!-- Botón de salir -->
+    <div id="btn-salir">
+        <button onclick="window.location.href='vista-admin-usuarios.html'"> X </button>
+    </div>
 
     <h1>Lista de usuarios</h1>
 
