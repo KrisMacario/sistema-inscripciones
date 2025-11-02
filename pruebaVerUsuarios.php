@@ -41,6 +41,10 @@
             text-align: center;
         }
 
+        h3{
+            margin-top: -25px;
+        }
+
         img{
             object-fit: cover;
             width: 100%;
@@ -48,7 +52,7 @@
             border-radius: 45%;
         }
 
-        .container button{
+        .container-user button{
             display: block;
             width: 60%;
             padding: 10px;
@@ -59,6 +63,7 @@
             border: none;
             border-radius: 40px;
             cursor: pointer;
+            margin-top: 10px;
         }
 
     </style>
@@ -96,7 +101,7 @@
                 $resultado = $conexion->query($sql_verificar);
                 //la condicion while es para recorrer todas las filas del resultado y mostrarlas
                 while ($row = $resultado->fetch_assoc()){ //mientras haya filas en el resultado
-                    echo "<div class='container'>". //se muestra el id del usuario
+                    echo "<div class='container-user'>". //se muestra el id del usuario
                     "<div class='card'>".
                     "<img src='https://bcw-media.s3.ap-northeast-1.amazonaws.com/large_Realistic_255556586487996_2736534a2a.jpg' alt='usuario'>".
                     "<h2>". htmlspecialchars($row["nombre"])."</h2>". //el htmlspecialchars es para evitar inyecciones de codigo, como <script>
