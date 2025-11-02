@@ -126,6 +126,7 @@
       border: none;
       cursor: pointer;
       font-size: 1rem;
+      text-align: center;
     }
 
     .btn-primary:hover {
@@ -278,6 +279,42 @@
       color: #4b5563;
       font-weight: 600;
       margin-bottom: 0.5rem;
+    }
+
+    .grupo label{
+      display: block;
+      text-align: center;
+      color: #4b5563;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    input[type="file"]{
+      display: none;
+    }
+
+    .grupo{
+      margin-bottom: 30px;
+    }
+
+    .grupo .subgrupo1{
+      display: flex;
+      flex-direction:row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .grupo .subgrupo1 label{
+      background-color: #b7bec7;
+      color: #3c4147;
+      cursor: pointer;
+      padding: 20px;
+      width: 200px;
+      height: 100px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .form-group input,
@@ -546,6 +583,27 @@
               <option>6° Grado</option>
             </select>
           </div> <!-- Arreglar Href -->
+
+          <!--Subir los archivos en pdf-->
+          <div class="grupo">
+            <label>Subir los siguientes archivos en formato pdf</label>
+            <div class="subgrupo1">
+              <input type="file" name="upload" id="uploadbtn">
+              <label for="uploadbtn">Certificado de preescolar</label>
+
+              <input type="file" name="upload" id="uploadbtn">
+              <label for="uploadbtn">CURP</label>
+            </div>
+
+            <div class="subgrupo1">
+              <input type="file" name="upload" id="uploadbtn">
+              <label for="uploadbtn">Cartilla Nacional de vacunación</label>
+
+              <input type="file" name="upload" id="uploadbtn">
+              <label for="uploadbtn">Acta de nacimiento</label>
+            </div>
+          </div>
+
           <a href="sol_inscripcion_enviada.html" class="btn-primary" style="width: 100%;" style="text-align: center;"> Enviar Solicitud de Inscripción</a>
           <!-- <button type="submit" class="btn-primary" style="width: 100%;">Enviar Solicitud de Inscripción</button> -->
         </form>
