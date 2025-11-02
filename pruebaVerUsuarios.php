@@ -4,27 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="css/GlobalStyle.css" rel="stylesheet"/>
 </head>
 <body>
 
     <style>
 
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f7f1c9ff;
-        }
 
         main{
             display: flex;
@@ -35,11 +20,7 @@
             margin: 20px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
+        
         .card{
             text-align: center;
             background: #f5f5f5ff;
@@ -79,46 +60,6 @@
             border-radius: 40px;
             cursor: pointer;
         }
-
-        /* Navegación */
-    nav {
-      background: #4A90A4;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .nav-brand {
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.25rem;
-      line-height: 1.3;
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      list-style: none;
-    }
-
-    .nav-menu a {
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .nav-menu a:hover {
-      color: #F4E4A6;
-    }
 
     </style>
     <!-- Navegación -->
