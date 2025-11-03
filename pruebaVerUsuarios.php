@@ -91,6 +91,11 @@
             margin-top: 10px;
         }
 
+        a{
+            text-decoration: none;
+            color: #4d4c4cff;
+        }
+
     </style>
     <!-- Navegación -->
     <nav id="inicio">
@@ -136,10 +141,12 @@
                 }
             ?>
 
+            <a href="vista-admin-adduser.html">
             <div id="card-add-user">
                 <img src="https://cdn-icons-png.flaticon.com/512/7794/7794550.png" alt="" id="plus">
                 <h3 id="add">Agregar usuario</h3>
             </div>
+            </a>
 
         </main>
     </section>
