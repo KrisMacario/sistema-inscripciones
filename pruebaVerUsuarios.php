@@ -32,6 +32,31 @@
             box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
         }
 
+        #card-add-user{
+            text-align: center;
+            background: rgba(199, 197, 197, 0.3);
+            width: 350px;
+            height: 500px;
+            margin: 80px 50px;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        #add{
+            margin-top: 10px;
+            text-align: center;
+            display: block;
+            font-size: 1.7rem;
+        }
+
+        #plus{
+            width: 180px;
+            height: 180px;
+            margin-top: 70px;
+        }
+
         h1{
             text-align: center;
             margin-top: 20px;
@@ -47,7 +72,7 @@
 
         img{
             object-fit: cover;
-            width: 100%;
+            width: 300px;
             height: 300px;
             border-radius: 45%;
         }
@@ -89,7 +114,6 @@
     <section id="sistema-escolar" class="sistema-escolar">
         <div class="container">
             <h1>Usuarios</h1>
-            <a>Agregar usuario</a>
         </div>
         <main>
             <?php
@@ -111,6 +135,12 @@
                     "</div>";
                 }
             ?>
+
+            <div id="card-add-user">
+                <img src="https://cdn-icons-png.flaticon.com/512/7794/7794550.png" alt="" id="plus">
+                <h3 id="add">Agregar usuario</h3>
+            </div>
+
         </main>
     </section>
 

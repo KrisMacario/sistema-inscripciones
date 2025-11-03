@@ -19,10 +19,9 @@
 
         main{
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 20px;
             margin: 20px;
         }
 
@@ -31,15 +30,62 @@
             margin-top: 20px;
         }
 
+        h3{
+            text-align: left;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
         .container-perfil{
             text-align: center;
             background: #f5f5f5ff;
-            max-width: 350px;
-            height: 500px;
+            width: 700px;
+            height: 600px;
             margin: 80px 50px;
             border-radius: 15px;
-            padding: 30px;
+            padding: 40px;
             box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        img{
+            object-fit: cover;
+            width: 250px;
+            height: 250px;
+            border-radius: 100%;
+            margin-left: 20px;
+        }
+
+        #subgroup{
+            display: flex;
+            flex-direction: row;
+        }
+
+        #NyE{
+            margin-left: 60px;
+        }
+
+        .name{
+            font-size: 2rem;
+            margin-top: 50px;
+        }
+
+        #edit-user{
+            border: none;
+            padding: 15px;
+            background: #d7dee6ff;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-top: 30px;
+            font-size: 1rem;
+        }
+
+        #otroGrupo{
+            margin-top: 45px;
+            margin-left: 30px;
+        }
+
+        hr{
+            margin: 30px;
         }
 
         #btn-salir{
@@ -86,7 +132,7 @@
                 $pk_usuario = $_GET['pk_usuario'];
 
                 //consultas preparadas
-                $stmt = $conexion->prepare("SELECT usuarios.pk_usuario, usuarios.telefono, usuarios.email, usuarios.nombre, usuarios.apellido, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE usuarios.pk_usuario = ?");
+                $stmt = $conexion->prepare("SELECT usuarios.pk_usuario, usuarios.telefono, usuarios.email, usuarios.nombre, usuarios.apellido, usuarios.estado, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE usuarios.pk_usuario = ?");
                 $stmt->bind_param("i", $pk_usuario);
                 $stmt->execute();
                 $resultado = $stmt->get_result();
@@ -95,11 +141,20 @@
                     $row = $resultado->fetch_assoc(); //obtener datos del usuario
 
                     echo "<div class='container-perfil'>". //se muestra el id del usuario
-                    "<h2>Nombre: ". $row['nombre']."</h2>". //el htmlspecialchars es para evitar inyecciones de codigo, como <script>
-                    "<h2>Apellido: ". $row['apellido']."</h3>".
-                    "<h2>Rol: ". $row['nombre_rol']."</h3>".
-                    "<h2>Telefono: ". $row['telefono']."</h3>".
-                    "<h2>E-mail: ". $row['email']."</h3>".
+                    "<div id='subgroup'>".
+                        "<img src='https://bcw-media.s3.ap-northeast-1.amazonaws.com/large_Realistic_255556586487996_2736534a2a.jpg' alt='user-perfil'>".
+                        "<div id='NyE'>".
+                            "<h2 class='name'>". $row['nombre']." ". $row['apellido']."</h2>".
+                            "<button id='edit-user'>Editar perfil</button>".
+                        "</div>".
+                    "</div>".
+                    "<hr>".
+                    "<div id='otroGrupo'>".
+                        "<h3>Rol asignado: ". $row['nombre_rol']."</h3>".
+                        "<h3>Telefono: ". $row['telefono']."</h3>".
+                        "<h3>E-mail: ". $row['email']."</h3>".
+                        "<h3>Estado: ". $row['estado']."</h3>".
+                    "</div>".
                     "</div>";
                 } 
 
