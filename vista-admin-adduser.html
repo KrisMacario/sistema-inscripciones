@@ -20,17 +20,42 @@
             text-align: center;
         }
 
+        #container-adduser{
+            text-align: center;
+            background: rgb(252, 251, 245);
+            width: 50%;
+            height: 100%;
+            padding: 50px;
+        }
+
     </style>
 
     <main>
 
         <h1>Añadir usuario</h1>
 
-        <div class="container-adduser">
-
-            
-
+        <div id="cerrar">
+            <button onclick="window.location.href='pruebaVerUsuarios.php'"></button>
         </div>
+
+        <form id="container-adduser" method="post">
+
+            <h3>Nombre (s)</h3>
+            <input type="text" placeholder="Nombre(s)">
+
+            <h3>Apellido(s)</h3>
+            <input type="text" placeholder="Apellido(s)">
+
+            <h3>Telefono</h3>
+            <input type="text" placeholder="Telefono">
+
+            <h3>E-mail</h3>
+            <input type="text" placeholder="E-mail">
+
+            <h3>Rol asignado</h3>
+            <input type="text" placeholder="Rol">
+
+        </form>
 
     </main>
     
