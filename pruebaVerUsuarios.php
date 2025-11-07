@@ -126,7 +126,7 @@
                 if ($conexion->connect_error) {
                     die("Error de conexión: " . $conexion->connect_error);
                 }
-                $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol";
+                $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 1";
                 $resultado = $conexion->query($sql_verificar);
                 //la condicion while es para recorrer todas las filas del resultado y mostrarlas
                 while ($row = $resultado->fetch_assoc()){ //mientras haya filas en el resultado

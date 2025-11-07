@@ -33,18 +33,22 @@
       <h2>Inscripción</h2>
       <div class="form-container">
         
-        <form action="" method="post"> <!--Pendiente para insertar datos del alumno-->
+        <form method="post" action="inscripciones.php" enctype="multipart/form-data"> <!--Pendiente para insertar datos del alumno-->
           <div class="form-grid">
             <div class="form-group">
-              <label>Nombre del Alumno</label>
-              <input type="text" name="nombre_alumno" placeholder="Nombre completo">
+              <label>Nombre(s) del Alumno</label>
+              <input type="text" name="nombre_alumno" placeholder="Nombre(s)">
             </div>
             <div class="form-group">
-              <label>Fecha de Nacimiento</label>
-              <input type="date" name="fecha_nacimiento">
+              <label>Apellido(s) del Alumno</label>
+              <input type="text" name="apellido_alumno" placeholder="Apellidos">
             </div>
           </div>
           
+          <div class="form-group">
+              <label>Fecha de Nacimiento</label>
+              <input type="date" name="fecha_nacimiento">
+            </div>
           <div class="form-group">
             <label>CURP</label>
             <input type="text" name="curp" placeholder="CURP del alumno">
@@ -53,29 +57,32 @@
           <div class="form-grid">
             <div class="form-group">
               <label>Nombre del Padre/Tutor</label>
-              <input type="text" name="nombre_padre" placeholder="Nombre completo">
+              <input type="text" name="nombre_padre" placeholder="Nombre del Padre/Tutor">
+            </div>
+            <div class="form-group">
+              <label>Apellido(s) del Padre/Tutor</label>
+              <input type="text" name="apellido_padre" placeholder="Apellido(s) del Padre/Tutor">
             </div>
             <div class="form-group">
               <label>Teléfono de Contacto</label>
               <input type="tel" name="telefono" placeholder="(123) 456-7890">
             </div>
-          </div>
-          
-          <div class="form-group">
+            <div class="form-group">
             <label>Email</label>
             <input type="email" name="email" placeholder="correo@ejemplo.com">
+          </div>
           </div>
           
           <div class="form-group">
             <label>Grado a Inscribir</label>
-            <select>
-              <option>Seleccione un grado</option>
-              <option>1° Grado</option>
-              <option>2° Grado</option>
-              <option>3° Grado</option>
-              <option>4° Grado</option>
-              <option>5° Grado</option>
-              <option>6° Grado</option>
+            <select name="grado">
+              <option value="">Seleccione un grado</option>
+              <option value="1">1° Grado</option>
+              <option value="2">2° Grado</option>
+              <option value="3">3° Grado</option>
+              <option value="4">4° Grado</option>
+              <option value="5">5° Grado</option>
+              <option value="6">6° Grado</option>
             </select>
           </div> <!-- Arreglar Href -->
 
@@ -83,23 +90,23 @@
           <div class="grupo">
             <label>Subir los siguientes archivos en formato pdf</label>
             <div class="subgrupo1">
-              <input type="file" name="upload" id="uploadbtn">
-              <label for="uploadbtn">Certificado de preescolar</label>
+              <input type="file" name="certificado_file" id="upload-certificado">
+              <label for="upload-certificado">Certificado de preescolar</label>
 
-              <input type="file" name="upload" id="uploadbtn">
-              <label for="uploadbtn">CURP</label>
+              <input type="file" name="curp_file" id="upload-curp">
+              <label for="upload-curp">CURP</label>
             </div>
 
             <div class="subgrupo1">
-              <input type="file" name="upload" id="uploadbtn">
-              <label for="uploadbtn">Cartilla Nacional de vacunación</label>
+              <input type="file" name="cartilla_file" id="upload-cartilla">
+              <label for="upload-cartilla">Cartilla Nacional de vacunación</label>
 
-              <input type="file" name="upload" id="uploadbtn">
-              <label for="uploadbtn">Acta de nacimiento</label>
+              <input type="file" name="acta_file" id="upload-acta">
+              <label for="upload-acta">Acta de nacimiento</label>
             </div>
           </div>
 
-          <a href="sol_inscripcion_enviada.html" class="btn-primary" style="width: 100%;" style="text-align: center;"> Enviar Solicitud de Inscripción</a>
+          <button type="submit" class="btn-primary" style="width: 100%;" style="text-align: center;"> Enviar Solicitud de Inscripción</a>
           <!-- <button type="submit" class="btn-primary" style="width: 100%;">Enviar Solicitud de Inscripción</button> -->
         </form>
       </div>
