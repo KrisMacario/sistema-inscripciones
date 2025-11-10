@@ -108,7 +108,7 @@
                 </div>
                 <ul class="nav-menu">
                     <li><a href="vista-admin-inicio.php">INICIO</a></li>
-                    <li><a href="vista-admin-inscripciones.html">INSCRIPCIONES</a></li>
+                    <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
                     <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
                </ul>
             </div>
