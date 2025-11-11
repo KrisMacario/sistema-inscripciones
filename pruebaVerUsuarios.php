@@ -25,8 +25,8 @@
             text-align: center;
             background: #f5f5f5ff;
             max-width: 350px;
-            height: 500px;
-            margin: 80px 50px;
+            height: 570px;
+            margin: 50px 50px;
             border-radius: 15px;
             padding: 30px;
             box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
@@ -37,7 +37,7 @@
             background: rgba(199, 197, 197, 0.3);
             width: 350px;
             height: 500px;
-            margin: 80px 50px;
+            margin: 30px 50px;
             border-radius: 15px;
             padding: 30px;
             box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
@@ -96,6 +96,35 @@
             color: #4d4c4cff;
         }
 
+        #group-buttons{
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        #group-buttons button{
+            background: #fff;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            font-size: 16px;
+        }
+
+        #group-buttons #eliminar{
+            background: #ee7171ff;
+            cursor: pointer;
+        }
+
+        #group-buttons #editar{
+            background: #6592b8ff;
+            cursor: pointer;
+        }
+
+        #group-buttons #consultar{
+            background: #68cc79ff;
+            cursor: pointer;
+        }
+
     </style>
     <!-- Navegación -->
     <nav id="inicio">
@@ -120,7 +149,9 @@
         <div class="container">
             <h1>Usuarios</h1>
         </div>
+
         <main>
+
             <?php
                 $conexion = new mysqli("localhost", "root", "", "sistema_inc");
                 if ($conexion->connect_error) {
@@ -136,6 +167,12 @@
                     "<h2>". htmlspecialchars($row["nombre"])."</h2>". //el htmlspecialchars es para evitar inyecciones de codigo, como <script>
                     "<h3>". htmlspecialchars($row["nombre_rol"])."</h3>".
                     '<button onclick="window.location.href=\'vista-admin-perfil-usuario.php?pk_usuario='. $row["pk_usuario"] . '\'"> Ver perfil </button>'.
+                    '<div id="group-buttons">
+
+                        <button id="eliminar" onclick="window.location.href=\'vista-admin-deleteuser.php\'">Eliminar</button>
+                        <button id="editar">Editar</button>
+
+                    </div>'.
                     "</div>".
                     "</div>";
                 }
