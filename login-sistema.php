@@ -16,7 +16,7 @@ $resultado = $conexion->query($sql_verificar);
 
 while ($row = $resultado->fetch_assoc()){
     if ($row["email"] == $correo and $row["contraseña"] == $contraseña){
-        header("location: vista-admin-inicio.html");
+        header("location: vista-admin-inicio.php");
         $exito = true;
         break;
     }
