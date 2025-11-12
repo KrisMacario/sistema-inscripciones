@@ -92,13 +92,19 @@
             $resultado = $conexion->query($sql_verificar);
 
             //la condicion while es para recorrer todas las filas del resultado y mostrarlas
-            while ($row = $resultado->fetch_assoc()){ //mientras haya filas en el resultado
+           echo '<a href="eliminar_usuario.php?id=...'
                 echo "<div class='container'>". //se muestra el id del usuario
                 "<img src='https://bcw-media.s3.ap-northeast-1.amazonaws.com/large_Realistic_255556586487996_2736534a2a.jpg' alt='usuario'>".
                 "<h2>". htmlspecialchars($row["nombre"])."</h2>". //el htmlspecialchars es para evitar inyecciones de codigo, como <script>
                 "<h3>". htmlspecialchars($row["nombre_rol"])."</h3>".
                 '<button onclick="window.location.href=\'vista-admin-perfil-usuario.php?pk_usuario='. $row["pk_usuario"] . '\'"> Ver perfil </button>'.
-                "</div>";
+         // ... (código anterior)
+     echo '<button onclick="window.location.href=\'vista-admin-perfil-usuario.php?pk_usuario=' . $row['pk_usuario'] . '\'">Ver perfil</button>';
+
+// >>> AÑADE ESTA NUEVA LÍNEA PARA ELIMINAR EL USUARIO:
+    echo '<a href="eliminar_usuario.php?id=' . $row['pk_usuario'] . '" onclick="return confirm(\'¿Estás seguro de eliminar a ' . $row['nombre'] . '?\')">Eliminar</a>';
+     echo '</div>';
+// ... (código que cierra el while)
             }
 
         ?>
