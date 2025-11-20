@@ -84,7 +84,7 @@
                 GAMBOA
             </div>
             <ul class="nav-menu">
-                <li><a href="vista-admin-inicio.html">INICIO</a></li>
+                <li><a href="vista-admin-inicio.php">INICIO</a></li>
                 <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
                 <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
             </ul>
@@ -96,6 +96,7 @@
             <h1>Usuarios</h1>
             <main>
                 <?php
+                $conexion = new mysqli("localhost", "root", "", "sistema_inc");
                 if ($conexion->connect_error) {
                     die("Error de conexión: " . $conexion->connect_error);
                 }
