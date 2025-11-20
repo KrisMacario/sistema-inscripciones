@@ -74,10 +74,6 @@
     </style>
 </head>
 <body>
-    <?php
-    // Incluye el archivo de conexión
-    include('conexion.php');
-    ?>
 
     <nav id="inicio">
         <div class="nav-container">
@@ -134,7 +130,7 @@
                 
                 <a href="vista-admin-adduser.html">
                     <div id="card-add-user">
-                        <img src="https://cdn-icons-png.flaticon.com/512/7794/7794550.png" alt="" id="plus">
+                        <img src="https://cdn-icons-png.flaticon.com/512/7794/7794550.png" alt="plus" id="plus">
                         <h3>Agregar usuario</h3>
                     </div>
                 </a>
