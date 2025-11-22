@@ -60,9 +60,48 @@
         }
 
         .cont-user{
-            margin-top: 30px;
-            border: solid 1px #000;
-            
+            margin: 20px;
+            border: none;
+            padding: 15px 20px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table{
+            border-collapse: separate;
+            border-spacing: 10px 25px;
+            margin: 20px;
+        }
+
+        th{
+          font-size: 1.5rem;
+        }
+
+        td{
+          font-size: 1.2rem;
+        }
+
+        tbody tr{
+          text-align: center
+        }
+        td button{
+          padding: 15px;
+          font-size: 1rem;
+          cursor: pointer;
+          background: #A2BFF5;
+          border: none;
+          border-radius: 25px;
+          color: #2e2e2eff;
+          margin-left: 5px;
+        }
+
+        #estado{
+          background: #cfe0ffff;
+          font-weight: bold;
+          padding: 15px;
+          border-radius: 25px;
+          cursor: auto;
         }
 
     </style>
@@ -91,36 +130,48 @@
     <div class="container">
       <h2>Alumnos de nuevo ingreso</h2>
 
-      <div class="cont-user">
-      <?php
-        $conexion = new mysqli("localhost", "root", "", "sistema_inc");
-        if ($conexion->connect_error) {
-            die("Error de conexión: " . $conexion->connect_error);
-        }
-        $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.estado, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 6";
-        $resultado = $conexion->query($sql_verificar);
-        //la condicion while es para recorrer todas las filas del resultado y mostrarlas
-        while ($row = $resultado->fetch_assoc()){ //mientras haya filas en el resultado
-            echo "<table class='table table-bordered' id='tabla'>".
-            "<thead>".
-            "<tr>".
-              "<th scope='col'>Nombre</th>".
-              "<th scope='col'>Apellido</th>".
-              "<th scope='col'>Estado</th>".
-            "</tr>".
-          "</thead>".
-          "<tbody>".
-            "<tr>".
-              "<td>". $row["nombre"] . "</td>".
-              "<td>". $row["apellido"] . "</td>".
-              "<td>". $row["estado"] . "</td>".
-            '<td><button onclick="window.location.href=\'vista-admin-perfil-usuario.php?pk_usuario='. $row["pk_usuario"] . '\'"> Ver perfil </button></td>'.
-            "</tr>".
-          "</tbody>".
-            "</table>";
-        }
-    ?>
-    </div>
+      <!-- aqui empieza la tabla y el php -->
+      <div class="cont-user"> 
+
+      <table class="table table-bordered" id="tabla">
+
+        <colgroup>
+          <col style="width: 20%;">
+          <col style="width: 35%;">
+          <col style="width: 30%;">
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Estado</th>
+          </tr>
+        </thead>
+
+        <?php
+          $conexion = new mysqli("localhost", "root", "", "sistema_inc");
+          if ($conexion->connect_error) {
+              die("Error de conexión: " . $conexion->connect_error);
+          }
+          $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.estado, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 6";
+          $resultado = $conexion->query($sql_verificar);
+          //la condicion while es para recorrer todas las filas del resultado y mostrarlas
+          while ($row = $resultado->fetch_assoc()){ //mientras haya filas en el resultado, el fetch_assoc las va obteniendo una por una
+              echo "<tbody>".
+              "<tr>".
+                "<td>". $row["nombre"] . "</td>".
+                "<td>". $row["apellido"] . "</td>".
+                "<td><button id='estado'>". $row["estado"] . "</button></td>".
+              '<td><button onclick="window.location.href=\'*pagianpendiente*?pk_usuario='. $row["pk_usuario"] . '\'"> Ver inscripcion </button></td>'.
+              "</tr>".
+            "</tbody>";
+          }
+      ?>
+
+      </table>
+
+      </div>
       
     </div>
   </section>

@@ -6,26 +6,42 @@
     <title>Document</title>
     <link href="css/GlobalStyle.css" rel="stylesheet">
     <style>
+
+        #sistema-escolar .container {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
         /* Estilos del contenedor principal */
         main {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 20px auto; /* Centrar y margen superior/inferior */
+            display: grid;
+            gap: 10px;
+            margin: 30px -40px; /* Centrar y margen superior/inferior */
+            grid-template-columns: repeat(3, 1fr);
+            
+        }
+
+        h3{
+            margin-top: -20px;
+        }
+
+        #sistema-escolar .container h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5rem;
+            
         }
 
         /* Estilos de la tarjeta de usuario */
-        .card {
+        .card-container-user {
             text-align: center;
-            background: #f5f5f5ff; /* Fondo claro para la tarjeta */
+            background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
             max-width: 350px;
             height: 570px;
-            margin: 50px 50px;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+            margin: 50px 0;
         }
 
         /* Estilos para la imagen de perfil */
@@ -41,7 +57,7 @@
             display: flex;
             flex-direction: row;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 40px;
             justify-content: center;
         }
 
@@ -55,6 +71,35 @@
             text-decoration: none; /* Quitar subrayado a los enlaces */
             color: white; /* Color de texto blanco por defecto */
             display: inline-block; /* Permitir padding y width/height en 'a' */
+        }
+
+        .card-add-user {
+            text-align: center;
+            background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
+            max-width: 350px;
+            height: 570px;
+            margin: 30px ;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+
+        }
+
+        #link-add-user {
+            text-decoration: none;
+            color: black;
+            text-align: center;
+            background: rgba(245, 245, 245, 0.2); /* Fondo claro para la tarjeta */
+            max-width: 350px;
+            height: 570px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #plus {
+            margin-top: 70px;
         }
 
         /* Estilo para el botón de eliminar (rojo) */
@@ -101,13 +146,13 @@
                     die("Error de conexión: " . $conexion->connect_error);
                 }
 
-                $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol";
+                $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 1";
                 $resultado = $conexion->query($sql_verificar);
 
                 // La condición while es para recorrer todas las filas del resultado y mostrarlas
                 while ($row = $resultado->fetch_assoc()) {
                     //Mientras haya filas en el resultado
-                    echo '<div class="card container-user">';
+                    echo '<div class="card-container-user">';
                     // Se muestra el id del usuario
                     echo '<img src="https://bcw-media.s3.ap-northeast-1.amazonaws.com/large_Realistic_255556586487996_2736534a2a.jpg" alt="usuario">';
                     echo '<h2>' . htmlspecialchars($row["nombre"]) . '</h2>'; // El htmlspecialchars es para evitar inyecciones de código.
@@ -130,7 +175,7 @@
                 }
                 ?>
                 
-                <a href="vista-admin-adduser.html">
+                <a href="vista-admin-adduser.html" id="link-add-user">
                     <div id="card-add-user">
                         <img src="https://cdn-icons-png.flaticon.com/512/7794/7794550.png" alt="plus" id="plus">
                         <h3>Agregar usuario</h3>

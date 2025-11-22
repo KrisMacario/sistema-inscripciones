@@ -33,13 +33,19 @@
             margin-top: 5%;
         }
 
-        p{
-            margin-top: 5%;
-            font-size: 1.5rem;
+        #subtitle{
+            margin-top: 1%;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        #paragraph{
+          margin-top: 1%;
+          font-size: 1.5rem;
         }
 
         #regresar_btn{
-            margin-top: 5%;
+            margin-top: 2%;
             background-color: #4A90A4;
             padding: 10px;
             width: 10%;
@@ -120,7 +126,7 @@
             try{
 
                 //insertar alumno
-                $conexion -> query("INSERT INTO usuarios(nombre, apellido, fk_rol, estado) VALUES('$nombre_alumno', '$apellido_alumno', 6, 'Activo')");
+                $conexion -> query("INSERT INTO usuarios(nombre, apellido, fk_rol, estado) VALUES('$nombre_alumno', '$apellido_alumno', 6, 'En proceso')");
                 $pk_alumno = $conexion -> insert_id;
 
                 //datos del alumno
@@ -137,7 +143,9 @@
 
                 $conexion -> commit();
 
-                echo "<p>Inscrito exitosamente</p>";
+                echo "<p id='subtitle'>El alumno fue inscrito exitosanente</p>".
+                 "<p id='paragraph'>Le enviaremos un correo <br>
+                 electronico para notificar su estado.</p>";
 
             }catch(Exception $e){
                 $conexion -> rollback();
