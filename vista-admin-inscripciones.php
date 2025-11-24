@@ -163,7 +163,7 @@
                 "<td>". $row["nombre"] . "</td>".
                 "<td>". $row["apellido"] . "</td>".
                 "<td><button id='estado'>". $row["estado"] . "</button></td>".
-              '<td><button onclick="window.location.href=\'*pagianpendiente*?pk_usuario='. $row["pk_usuario"] . '\'"> Ver inscripcion </button></td>'.
+              '<td><button onclick="window.location.href=\'inscripcion-alumno.php?pk_usuario='. $row["pk_usuario"] . '\'"> Ver inscripcion </button></td>'.
               "</tr>".
             "</tbody>";
           }
