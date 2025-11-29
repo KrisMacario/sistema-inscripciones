@@ -8,6 +8,14 @@
   <link href="css/GlobalStyle.css" rel="stylesheet"/>
 </head>
 <body>
+
+<!-- Agregar estilos específicos para esta página -->
+<style>
+  .anuncios-grid {
+    text-align: center;
+  }
+</style>
+
   <!-- Navegación -->
   <nav id="inicio">
     <div class="container">

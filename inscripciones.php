@@ -95,11 +95,13 @@
             $apellido_alumno = $_POST['apellido_alumno'];
             $fecha_nacimiento = $_POST['fecha_nacimiento'];
             $curp = $_POST['curp'];
+            $domicilio = $_POST['domicilio'];
             $nombre_padre = $_POST['nombre_padre'];
             $apellido_padre = $_POST['apellido_padre'];
             $telefono = $_POST['telefono'];
             $email = $_POST['email'];
             $grado = $_POST['grado'];
+            $parentezco = $_POST['parentezco'];
 
             //datos de los archivos
             $carpeta = "documentos/";
@@ -126,7 +128,7 @@
             try{
 
                 //insertar alumno
-                $conexion -> query("INSERT INTO usuarios(nombre, apellido, fk_rol, estado) VALUES('$nombre_alumno', '$apellido_alumno', 6, 'En proceso')");
+                $conexion -> query("INSERT INTO usuarios(nombre, apellido, direccion, fk_rol, estado) VALUES('$nombre_alumno', '$apellido_alumno', '$domicilio', 6, 'En proceso')");
                 $pk_alumno = $conexion -> insert_id;
 
                 //datos del alumno
@@ -134,7 +136,7 @@
                 $pk_alumno_datos = $conexion -> insert_id;
 
                 //datos del padre
-                $conexion -> query("INSERT INTO usuarios(nombre, apellido, telefono, email, fk_rol) VALUES('$nombre_padre', '$apellido_padre', '$telefono', '$email', 3 )");
+                $conexion -> query("INSERT INTO usuarios(nombre, apellido, telefono, email, fk_rol, parentezco) VALUES('$nombre_padre', '$apellido_padre', '$telefono', '$email', 3, '$parentezco')");
                 $pk_padre = $conexion -> insert_id;
 
                 //datos de los archivos
