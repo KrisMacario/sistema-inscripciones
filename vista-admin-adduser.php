@@ -12,7 +12,8 @@
     $telefono_personal = $_POST['telefono_personal'];
     $telefono_fijo = $_POST['telefono_fijo'];
     $email_admin = $_POST['email_admin'];
-
+    $contra_admin = $_POST['contra_admin'];
+    
     $foto = 'icon-7797704_640.png'; // Imagen por defecto
 
 if (isset($_FILES['foto'])) {
@@ -28,7 +29,7 @@ if (isset($_FILES['foto'])) {
     $foto = $fotoNombre;
 }
 
-// ✅ Verificación de escritura
+// Verificación de escritura
 $test = __DIR__ . "/fotos_perfil/test.txt";
 if (file_put_contents($test, "Prueba de escritura")) {
     echo "";
@@ -49,7 +50,7 @@ if (file_put_contents($test, "Prueba de escritura")) {
     try{
 
         //insertar user
-        $sql = "INSERT INTO usuarios(nombre, apellido, telefono, telefonoFijo, email, contraseña, fk_rol, estado, foto_perfil) VALUES('$nombre_admin', '$apellido_admin', '$telefono_personal', '$telefono_fijo', '$email_admin', 'abcde', 1, 'Activo', '$foto')";
+        $sql = "INSERT INTO usuarios(nombre, apellido, telefono, telefonoFijo, email, contraseña, fk_rol, estado, foto_perfil) VALUES('$nombre_admin', '$apellido_admin', '$telefono_personal', '$telefono_fijo', '$email_admin', '$contra_admin', 1, 'Activo', '$foto')";
         $conexion -> query($sql);
         $pk_usuario = $conexion -> insert_id;
 
