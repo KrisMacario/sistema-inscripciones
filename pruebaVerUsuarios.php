@@ -176,7 +176,7 @@
     echo '<h3>' . htmlspecialchars($row["nombre_rol"]) . '</h3>';
     echo '<div class="group-buttons">';
     echo '<a id="consultar" href="vista-admin-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
-    echo '<button id="editar">Editar</button>';
+    echo '<a id="editar" href="vista-admin-edituser.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
     echo '<a id="eliminar" href="eliminar_usuario.php?id=' . $row['pk_usuario'] . '" onclick="return confirm(\'¿Estás seguro de eliminar a ' . htmlspecialchars($row['nombre']) . '?\')">Eliminar</a>';
     echo '</div>';
     echo '</div>';
