@@ -15,7 +15,94 @@
         color: #333;
         background: #f7f1c9ff;
         text-align: center;
+        margin: 0;
     }
+
+    /*estilo del main*/
+    main{
+        margin: 0;
+    }
+
+    /*estilo de la barra de navegación*/
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    nav {
+      background: #4A90A4;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .nav-brand {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-menu a:hover {
+      color: #F4E4A6;
+    }
+
+    .btn-sistema {
+      background: #F4E4A6;
+      color: #2c3E50;
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .btn-sistema:hover {
+      background: #e8d890;
+    }
+
+    /*boton regresar*/
+    .bak{
+        position: fixed;
+        top: 15%;
+        left: 20px;
+        background-color: #4A90A4;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+        font-weight: 800;
+    }
+
+    /*estilo de la ficha de inscripción*/
 
     #ficha{
         width: 90%;
@@ -28,6 +115,7 @@
         text-align: center;
         box-shadow: 0 10px 8px rgba(0, 0, 0, 0.3);
         margin-bottom: 5%;
+        margin-top: 5%
     }
 
     img{
@@ -273,15 +361,71 @@
         background: #A2BFF5;
         border: none;
         padding: 40px;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         border-radius: 25px;
         margin-left: 20%;
+        cursor: pointer;
+        text-decoration: none;
+        color: #000;
+    }
+
+    .boones{
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
+        gap: 50%;
+        margin-bottom: 80px;
+        margin-right: 10%;
+    }
+
+    .aceptar{
+        background: #aceea7ff;
+        border: none;
+        border-radius: 50px;
+        padding: 20px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        width: 250%;
+        cursor: pointer;
+    }
+
+    .rechazar{
+        background: #FFADAD;
+        border: none;
+        border-radius: 50px;
+        padding: 20px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        width: 250%;
         cursor: pointer;
     }
 
 </style>
 
+<!--navegación-->
+<nav id="inicio">
+    <div class="container">
+      <div class="nav-container">
+        <div class="nav-brand">
+          ROSALINDA<br>
+          GUERRERO<br>
+          GAMBOA
+        </div>
+        <ul class="nav-menu">
+          <li><a href="vista-admin-inicio.php">INICIO</a></li>
+          <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
+          <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--boton para regresar-->
+  <button class="bak" onclick="history.back()"><</button>
+
 <main>
+
+
 
     <!-- Aquí va el contenido de la ficha de inscripción, que sera como una hoja -->
     <div id="ficha">
@@ -360,32 +504,52 @@
 
     <h1>Documentos requeridos</h1>
 
-    <div class="certificado">
-        <div class="grupo">
-            <h4>Certificado de preescolar</h4>
-            <button class="ver-doc">Ver documento</button>
-        </div>
-    </div>
+    <!-- aqui van los documentos requeridos -->
+    <?php
+        $conexion = new mysqli("localhost", "root", "", "sistema_inc");
+        if ($conexion->connect_error) {
+            die("Error de conexión: " . $conexion->connect_error);
+        }
+        //consulta para obtener las rutas de los documentos del alumno
+        $consulta = $conexion->prepare("SELECT tipo_documento.nombre, tipo_documento.ruta_doc FROM tipo_documento JOIN alumno_datos ON tipo_documento.fk_alumno = alumno_datos.pk_alumno WHERE alumno_datos.fk_usuarios = ?");
+        $consulta->bind_param("i", $pk_usuario);
+        $consulta->execute();
+        $resultado_docs = $consulta->get_result();
 
-    <div class="certificado">
-        <div class="grupo">
-            <h4>CURP</h4>
-            <button class="ver-doc">Ver documento</button>
-        </div>
-    </div>
+        while ($doc = $resultado_docs->fetch_assoc()) {
+            echo '<div class="certificado">
+                <div class="grupo">
+                <h4>' . htmlspecialchars($doc['nombre']) . '</h4>';
 
-    <div class="certificado">
-        <div class="grupo">
-            <h4>Acta de nacimiento</h4>
-            <button class="ver-doc">Ver documento</button>
-        </div>
-    </div>
+            $ruta_fisica = __DIR__ . '/' . $doc['ruta_doc'];
+            if (!empty($doc['ruta_doc']) && file_exists($ruta_fisica)) {
+                echo '<a href="ver-documento.php?doc=' . urlencode($doc['ruta_doc']) . '" class="ver-doc" target="_blank">Ver documento</a>';
+            } else {
+                echo '<span style="color:red;">Documento no disponible</span>';
+            }
 
-    <div class="certificado">
-        <div class="grupo">
-            <h4>Cartilla de vacunación</h4>
-            <button class="ver-doc">Ver documento</button>
-        </div>
+            echo '</div></div>';
+        }
+
+    ?>
+
+    <!--Aqui van los botones para aceptar o rechazar-->
+    <div class="boones">
+        <form action="validar-ficha.php" method="post">
+            <input type="hidden" name="pk_usuario_alumno" value="<?= $pk_usuario ?>">
+            <input type="hidden" name="pk_padre" value="<?= $row['pk_padre'] ?>">
+            <input type="hidden" name="padre_email" value="<?= $row['padre_email'] ?>">
+            <input type="hidden" name="accion" value="aceptar">
+            <button type="submit" class="aceptar">Aceptar</button>
+        </form>
+
+        <form action="rechazar-ficha.php" method="post">
+            <input type="hidden" name="pk_usuario_alumno" value="<?= $pk_usuario ?>">
+            <input type="hidden" name="pk_padre" value="<?= $row['pk_padre'] ?>">
+            <input type="hidden" name="padre_email" value="<?= $row['padre_email'] ?>">
+            <input type="hidden" name="accion" value="rechazar">
+            <button type="submit" class="rechazar">Rechazar</button>
+        </form>
     </div>
 
 </main>

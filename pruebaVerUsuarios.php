@@ -21,6 +21,12 @@
             
         }
 
+        .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        }
+
         h3{
             margin-top: -20px;
         }
@@ -104,17 +110,17 @@
 
         /* Estilo para el botón de eliminar (rojo) */
         #eliminar {
-            background-color: #ee7171ff;
+            background-color: #ce6868ff;
         }
 
         /* Estilo para el botón de editar (azul) */
         #editar {
-            background-color: #6592b6ff;
+            background-color: #94a5e7ff;
         }
 
         /* Estilo para el botón de consultar (verde) */
         #consultar {
-            background-color: #68cc79ff;
+            background-color: #77cfa3ff;
         }
     </style>
 </head>
@@ -122,19 +128,21 @@
 
 
     <nav id="inicio">
-        <div class="nav-container">
-            <div class="nav-brand">
-                ROSALINDA<br>
-                GUERRERO<br>
-                GAMBOA
-            </div>
-            <ul class="nav-menu">
-                <li><a href="vista-admin-inicio.php">INICIO</a></li>
-                <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
-                <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
-            </ul>
+    <div class="container">
+      <div class="nav-container">
+        <div class="nav-brand">
+          ROSALINDA<br>
+          GUERRERO<br>
+          GAMBOA
         </div>
-    </nav>
+        <ul class="nav-menu">
+          <li><a href="vista-admin-inicio.php">INICIO</a></li>
+          <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
+          <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
+        </ul>
+      </div>
+    </div>
+</nav>
 
     <section id="sistema-escolar" class="sistema-escolar">
         <div class="container">
@@ -146,33 +154,32 @@
                     die("Error de conexión: " . $conexion->connect_error);
                 }
 
-                $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 1";
+                $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.foto_perfil, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 1";
                 $resultado = $conexion->query($sql_verificar);
 
                 // La condición while es para recorrer todas las filas del resultado y mostrarlas
-                while ($row = $resultado->fetch_assoc()) {
-                    //Mientras haya filas en el resultado
-                    echo '<div class="card-container-user">';
-                    // Se muestra el id del usuario
-                    echo '<img src="https://bcw-media.s3.ap-northeast-1.amazonaws.com/large_Realistic_255556586487996_2736534a2a.jpg" alt="usuario">';
-                    echo '<h2>' . htmlspecialchars($row["nombre"]) . '</h2>'; // El htmlspecialchars es para evitar inyecciones de código.
-                    echo '<h3>' . htmlspecialchars($row["nombre_rol"]) . '</h3>';
-                    echo '<div class="group-buttons">';
-                    
-                    // Botón para Ver Perfil/Consultar
-                    echo '<a id="consultar" href="vista-admin-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
+               while ($row = $resultado->fetch_assoc()) {
+    echo '<div class="card-container-user">';
 
-                    // Botón para Editar (Se puede dejar el placeholder por ahora)
-                    echo '<button id="editar">Editar</button>';
 
-                    // Botón para Eliminar (TU CÓDIGO CORREGIDO)
-                    // Usa el enlace que apunta a eliminar_usuario.php con el ID.
-                    // El onclick pide confirmación antes de navegar.
-                    echo '<a id="eliminar" href="eliminar_usuario.php?id=' . $row['pk_usuario'] . '" onclick="return confirm(\'¿Estás seguro de eliminar a ' . htmlspecialchars($row['nombre']) . '?\')">Eliminar</a>';
-                    
-                    echo '</div>'; // Cierre de div.group-buttons
-                    echo '</div>'; // Cierre de div.card
-                }
+    // 🔍 Verificar si el archivo existe
+    $foto = !empty($row["foto_perfil"]) ? $row["foto_perfil"] : "icon-7797704_640.png";
+    $rutaServidor = __DIR__ . "/fotos_perfil/" . $foto;
+    $rutaWeb = "fotos_perfil/" . $foto;
+
+    // 🔍 Mostrar imagen
+    echo '<img src="' . htmlspecialchars($rutaWeb) . '" alt="usuario">';
+
+    echo '<h2>' . htmlspecialchars($row["nombre"]) . '</h2>';
+    echo '<h3>' . htmlspecialchars($row["nombre_rol"]) . '</h3>';
+    echo '<div class="group-buttons">';
+    echo '<a id="consultar" href="vista-admin-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
+    echo '<button id="editar">Editar</button>';
+    echo '<a id="eliminar" href="eliminar_usuario.php?id=' . $row['pk_usuario'] . '" onclick="return confirm(\'¿Estás seguro de eliminar a ' . htmlspecialchars($row['nombre']) . '?\')">Eliminar</a>';
+    echo '</div>';
+    echo '</div>';
+}
+
                 ?>
                 
                 <a href="vista-admin-adduser.html" id="link-add-user">

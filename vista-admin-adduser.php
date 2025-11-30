@@ -13,13 +13,44 @@
     $telefono_fijo = $_POST['telefono_fijo'];
     $email_admin = $_POST['email_admin'];
 
+    $foto = 'icon-7797704_640.png'; // Imagen por defecto
+
+if (isset($_FILES['foto'])) {
+    echo "<p>Archivo recibido: " . $_FILES['foto']['name'] . "</p>";
+    echo "<p>Error de subida: " . $_FILES['foto']['error'] . "</p>";
+
+    if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+        $fotoTmp = $_FILES['foto']['tmp_name'];
+        $fotoNombre = uniqid() . "_" . basename($_FILES['foto']['name']);
+        $destino = __DIR__ . "/fotos_perfil/" . $fotoNombre;
+
+        if (move_uploaded_file($fotoTmp, $destino)) {
+    $foto = $fotoNombre;
+}
+
+// ✅ Verificación de escritura
+$test = __DIR__ . "/fotos_perfil/test.txt";
+if (file_put_contents($test, "Prueba de escritura")) {
+    echo "";
+} else {
+    echo "";
+}
+    } else {
+        echo "";
+    }
+}
+
+
+
+
     //iniciar transiccion
     $conexion -> begin_transaction();
 
     try{
 
-        //insertar alumno
-        $conexion -> query("INSERT INTO usuarios(nombre, apellido, telefono, telefonoFijo, email, contraseña, fk_rol, estado) VALUES('$nombre_admin', '$apellido_admin', '$telefono_personal', '$telefono_fijo', '$email_admin', 'abcde', 1, 'Activo')");
+        //insertar user
+        $sql = "INSERT INTO usuarios(nombre, apellido, telefono, telefonoFijo, email, contraseña, fk_rol, estado, foto_perfil) VALUES('$nombre_admin', '$apellido_admin', '$telefono_personal', '$telefono_fijo', '$email_admin', 'abcde', 1, 'Activo', '$foto')";
+        $conexion -> query($sql);
         $pk_usuario = $conexion -> insert_id;
 
         $conexion -> commit();

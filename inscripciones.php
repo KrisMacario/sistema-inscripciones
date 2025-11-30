@@ -84,6 +84,37 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Sign-check-icon.png/960px-Sign-check-icon.png" alt="Checked">
 
         <?php
+            // Validar archivos requeridos
+            $requiredFiles = [
+                "certificado_file" => "Certificado de preescolar",
+                "curp_file"        => "CURP",
+                "cartilla_file"    => "Cartilla de vacunación",
+                "acta_file"        => "Acta de nacimiento"
+            ];
+
+            $errors = [];
+
+            foreach ($requiredFiles as $field => $label) {
+                if (!isset($_FILES[$field]) || $_FILES[$field]['error'] === UPLOAD_ERR_NO_FILE) {
+                    $errors[] = "Falta subir el archivo: $label.";
+                } elseif ($_FILES[$field]['type'] !== "application/pdf") {
+                    $errors[] = "El archivo $label debe estar en formato PDF.";
+                }
+            }
+
+            // Mostrar errores si hay
+            if (!empty($errors)) {
+                echo "<h3>❌ No se pudo completar la inscripción:</h3><ul>";
+                foreach ($errors as $error) {
+                    echo "<li>$error</li>";
+                }
+                echo "</ul>";
+                exit;
+            }
+        ?>
+
+
+        <?php
 
             $conexion = new mysqli("localhost","root","","sistema_inc");
             if($conexion->connect_error){
@@ -99,28 +130,46 @@
             $nombre_padre = $_POST['nombre_padre'];
             $apellido_padre = $_POST['apellido_padre'];
             $telefono = $_POST['telefono'];
+            $telefono_fijo = $_POST['telefono_fijo'];
             $email = $_POST['email'];
             $grado = $_POST['grado'];
             $parentezco = $_POST['parentezco'];
 
             //datos de los archivos
-            $carpeta = "documentos/";
+            $carpeta = __DIR__ . "/documentos/";
 
-            $certificado_file = $_FILES['certificado_file']['name'];
-            $curp_file = $_FILES['curp_file']['name'];
-            $cartilla_file = $_FILES['cartilla_file']['name'];
-            $acta_file = $_FILES['acta_file']['name'];
+            function limpiarNombreArchivo($nombre) {
+              $nombre = iconv('UTF-8', 'ASCII//TRANSLIT', $nombre); // quita acentos
+              $nombre = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $nombre); // reemplaza todo lo raro
+              return $nombre;
+            }
+
+            $certificado_file = limpiarNombreArchivo($_FILES['certificado_file']['name']);
+            $curp_file = limpiarNombreArchivo($_FILES['curp_file']['name']);
+            $cartilla_file = limpiarNombreArchivo($_FILES['cartilla_file']['name']);
+            $acta_file = limpiarNombreArchivo($_FILES['acta_file']['name']);
 
             $ruta_certificado = $carpeta . $certificado_file;
             $ruta_curp = $carpeta . $curp_file;
             $ruta_cartilla = $carpeta . $cartilla_file;
             $ruta_acta = $carpeta . $acta_file;
 
-            //para guardarla en el servidor
-            move_uploaded_file($_FILES['certificado_file']['tmp_name'], $carpeta . $certificado_file);
-            move_uploaded_file($_FILES['curp_file']['tmp_name'], $carpeta . $curp_file);
-            move_uploaded_file($_FILES['cartilla_file']['tmp_name'], $carpeta . $cartilla_file);
-            move_uploaded_file($_FILES['acta_file']['tmp_name'], $carpeta . $acta_file);
+            function guardarArchivo($campo, $ruta) {
+            if (is_uploaded_file($_FILES[$campo]['tmp_name'])) {
+                if (move_uploaded_file($_FILES[$campo]['tmp_name'], $ruta)) {
+                    echo "";
+                } else {
+                    echo "";
+                }
+            } else {
+                echo "";
+            }
+        }
+
+        guardarArchivo('certificado_file', $ruta_certificado);
+        guardarArchivo('curp_file', $ruta_curp);
+        guardarArchivo('cartilla_file', $ruta_cartilla);
+        guardarArchivo('acta_file', $ruta_acta);
 
             //iniciar transiccion
             $conexion -> begin_transaction();
@@ -136,13 +185,17 @@
                 $pk_alumno_datos = $conexion -> insert_id;
 
                 //datos del padre
-                $conexion -> query("INSERT INTO usuarios(nombre, apellido, telefono, email, fk_rol, parentezco) VALUES('$nombre_padre', '$apellido_padre', '$telefono', '$email', 3, '$parentezco')");
+                $conexion -> query("INSERT INTO usuarios(nombre, apellido, telefono, email, fk_rol, telefonoFijo, parentezco) VALUES('$nombre_padre', '$apellido_padre', '$telefono', '$email', 3, '$telefono_fijo', '$parentezco')");
                 $pk_padre = $conexion -> insert_id;
+
+                //insertar el padre_alumno
+                $conexion -> query("INSERT INTO padre_alumno(fk_padre, fk_alumno) VALUES('$pk_padre', '$pk_alumno')");
+                $pk_padre_alumno = $conexion -> insert_id;
 
                 //datos de los archivos
-                $conexion -> query("INSERT INTO tipo_documento(nombre, ruta_doc) VALUES('Certificado de kinder', '$ruta_certificado'), ('CURP', '$ruta_curp'), ('cartilla de vacunación', '$ruta_cartilla'), ('Acta de nacimiento', '$ruta_acta') ");
-                $pk_padre = $conexion -> insert_id;
+                $conexion -> query("INSERT INTO tipo_documento(nombre, ruta_doc, fk_alumno) VALUES ('Certificado de kinder', 'documentos/$certificado_file', '$pk_alumno_datos'), ('CURP', 'documentos/$curp_file', '$pk_alumno_datos'), ('Cartilla de vacunación', 'documentos/$cartilla_file', '$pk_alumno_datos'), ('Acta de nacimiento', 'documentos/$acta_file', '$pk_alumno_datos')");
 
+                $pk_tipo_doc = $conexion -> insert_id;
                 $conexion -> commit();
 
                 echo "<p id='subtitle'>El alumno fue inscrito exitosanente</p>".

@@ -8,6 +8,30 @@
   <link href="css/GlobalStyle.css" rel="stylesheet"/>
 </head>
 <body>
+
+  <style>
+
+    /*estilo para los spans de error*/
+    .gru{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      justify-content: center;
+      text-align: center;
+    }
+
+    span{
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    input.invalid, select.invalid, textarea.invalid{
+      border-color: red;
+    }
+
+  </style>
+
   <!-- Navegación -->
   <nav id="inicio">
     <div class="container">
@@ -38,54 +62,68 @@
           <div class="form-grid">
             <div class="form-group">
               <label>Nombre(s) del Alumno</label>
-              <input type="text" name="nombre_alumno" placeholder="Nombre(s)">
+              <input type="text" name="nombre_alumno" id="nombre" placeholder="Nombre(s)" required>
+              <span id="nombre-error"></span>
             </div>
             <div class="form-group">
               <label>Apellido(s) del Alumno</label>
-              <input type="text" name="apellido_alumno" placeholder="Apellidos">
+              <input type="text" name="apellido_alumno" id="apellido_alumno" placeholder="Apellidos">
+              <span id="apellido_alumno-error"></span>
             </div>
           </div>
           
           <div class="form-group">
               <label>Fecha de Nacimiento</label>
-              <input type="date" name="fecha_nacimiento">
+              <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+              <span id="fecha_nacimiento-error"></span>
             </div>
           <div class="form-group">
             <label>CURP</label>
-            <input type="text" name="curp" placeholder="CURP del alumno">
+            <input type="text" name="curp" id="curp" placeholder="CURP del alumno" maxlength="18" required>
+            <span id="curp-error"></span>
           </div>
           <div class="form-group">
             <label>Domicilio</label>
-            <input type="text" name="domicilio" placeholder="Dirección del domicilio">
+            <input type="text" name="domicilio" id="domicilio" placeholder="Dirección del domicilio" required>
+            <span id="domicilio-error"></span>
           </div>
           
           <div class="form-grid">
             <div class="form-group">
               <label>Nombre del Padre/Tutor</label>
-              <input type="text" name="nombre_padre" placeholder="Nombre del Padre/Tutor">
+              <input type="text" name="nombre_padre" id="nombre_padre" placeholder="Nombre del Padre/Tutor" required>
+              <span id="nombre_padre-error"></span>
             </div>
             <div class="form-group">
               <label>Apellido(s) del Padre/Tutor</label>
-              <input type="text" name="apellido_padre" placeholder="Apellido(s) del Padre/Tutor">
+              <input type="text" name="apellido_padre" id="apellido_padre" placeholder="Apellido(s) del Padre/Tutor" required>
+              <span id="apellido_padre-error"></span>
             </div>
             <div class="form-group">
               <label>Teléfono de Contacto</label>
-              <input type="tel" name="telefono" placeholder="(123) 456-7890">
+              <input type="tel" name="telefono" id="telefono" placeholder="(123) 456-7890" maxlength="10" required>
+              <span id="telefono-error"></span>
             </div>
             <div class="form-group">
             <label>Parentezco</label>
-            <input type="text" name="parentezco" placeholder="Padre, madre, tutor, etc.">
+            <input type="text" name="parentezco" id="parentezco" placeholder="Padre, madre, tutor, etc." required>
+            <span id="parentezco-error"></span>
           </div>
+          <div class="form-group">
+            <label>Teléfono fijo</label>
+            <input type="tel" name="telefono_fijo" id="telefono_fijo" placeholder="(123) 456-7890" maxlength="10" required>
+            <span id="telefono_fijo-error"></span>
           </div>
-
           <div class="form-group">
             <label>Email</label>
-            <input type="email" name="email" placeholder="correo@ejemplo.com">
+            <input type="email" name="email" id="email" placeholder="correo@ejemplo.com" required>
+            <span id="email-error"></span>
+          </div>
           </div>
           
           <div class="form-group">
             <label>Grado a Inscribir</label>
-            <select name="grado">
+            <select name="grado" id="grado">
               <option value="">Seleccione un grado</option>
               <option value="1">1° Grado</option>
               <option value="2">2° Grado</option>
@@ -94,29 +132,41 @@
               <option value="5">5° Grado</option>
               <option value="6">6° Grado</option>
             </select>
+            <span id="grado-error"></span>
           </div>
 
           <!--Subir los archivos en pdf-->
           <div class="grupo">
             <label>Subir los siguientes archivos en formato pdf</label>
             <div class="subgrupo1">
-              <input type="file" name="certificado_file" id="upload-certificado">
-              <label for="upload-certificado">Certificado de preescolar</label>
+              <div class="gru">
+                <input type="file" name="certificado_file" id="upload-certificado" >
+                <label for="upload-certificado">Certificado de preescolar</label>
+                <span id="upload-certificado-error"></span>
+              </div>
 
-              <input type="file" name="curp_file" id="upload-curp">
-              <label for="upload-curp">CURP</label>
+              <div class="gru">
+                <input type="file" name="curp_file" id="upload-curp" >
+                <label for="upload-curp">CURP</label>
+                <span id="upload-curp-error"></span>
+              </div>
             </div>
 
             <div class="subgrupo1">
-              <input type="file" name="cartilla_file" id="upload-cartilla">
-              <label for="upload-cartilla">Cartilla Nacional de vacunación</label>
+              <div class="gru">
+                <input type="file" name="cartilla_file" id="upload-cartilla" >
+                <label for="upload-cartilla">Cartilla Nacional de vacunación</label>
+                <span id="upload-cartilla-error"></span>
+              </div>
 
-              <input type="file" name="acta_file" id="upload-acta">
-              <label for="upload-acta">Acta de nacimiento</label>
+              <div class="gru">
+                <input type="file" name="acta_file" id="upload-acta" >
+                <label for="upload-acta">Acta de nacimiento</label>
+                <span id="upload-acta-error"></span>
             </div>
           </div>
 
-          <button type="submit" class="btn-primary" style="width: 100%;" style="text-align: center;"> Enviar Solicitud de Inscripción</a>
+          <button type="submit" class="btn-primary" style="width: 100%;" style="text-align: center;"> Enviar Solicitud de Inscripción</button>
           <!-- <button type="submit" class="btn-primary" style="width: 100%;">Enviar Solicitud de Inscripción</button> -->
         </form>
       </div>
@@ -131,5 +181,114 @@
       <p>© 2025 Escuela Primaria Rosalinda Guerrero Gamboa. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+<!--script para validar los campos-->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  function validarCampo(idCampo, max, mensaje){
+    const campo = document.getElementById(idCampo);
+    const errorSpan = document.getElementById(idCampo + "-error");
+
+    campo.addEventListener("input", function(){
+      const valor = campo.value.trim();
+      if(valor.length === 0){
+        errorSpan.textContent = "Este campo es obligatorio.";
+        campo.classList.add("invalid");
+      } else if (valor.length > max){
+        errorSpan.textContent = "El campo debe tener máximo " + max + " caracteres. " + mensaje;
+        campo.classList.add("invalid");
+      } else {
+        errorSpan.textContent = "";
+        campo.classList.remove("invalid");
+      }
+    });
+  }
+
+  //script para checar que la curp este en mayusculas
+  const curpCampo = document.getElementById("curp");
+  curpCampo.addEventListener("input", function(){
+    curpCampo.value = curpCampo.value.toUpperCase();
+  });
+
+  // llamadas de texto
+  validarCampo("nombre", 50, "");
+  validarCampo("apellido_alumno", 50, "");
+  validarCampo("fecha_nacimiento", 10, "");
+  validarCampo("curp", 18, "El CURP debe tener 18 caracteres.");
+  validarCampo("domicilio", 100, "");
+  validarCampo("parentezco", 50, "");
+  validarCampo("telefono_fijo", 10, "El teléfono fijo debe tener 10 dígitos.");
+  validarCampo("email", 100, "El correo electrónico no es válido.");
+  validarCampo("grado", 2, "Seleccione un grado válido.");
+  validarCampo("nombre_padre", 50, "");
+  validarCampo("apellido_padre", 50, "");
+  validarCampo("telefono", 10, "El teléfono debe tener 10 dígitos.");
+
+  // función para archivos
+  function validarArchivo(idCampo, mensaje){
+    const campo = document.getElementById(idCampo);
+    const errorSpan = document.getElementById(idCampo + "-error");
+
+    campo.addEventListener("change", function(){
+      const archivo = campo.files[0];
+      if(!archivo){
+        errorSpan.textContent = "Este campo es obligatorio.";
+        campo.classList.add("invalid");
+      } else if(archivo.type !== "application/pdf"){
+        errorSpan.textContent = "El archivo debe estar en formato PDF. " + mensaje;
+        campo.classList.add("invalid");
+      } else {
+        errorSpan.textContent = "";
+        campo.classList.remove("invalid");
+      }
+    });
+  }
+
+  // llamadas de archivos
+  validarArchivo("upload-certificado", "Debe ser un certificado válido.");
+  validarArchivo("upload-curp", "Debe ser un CURP válido.");
+  validarArchivo("upload-cartilla", "Debe ser una cartilla válida.");
+  validarArchivo("upload-acta", "Debe ser un acta válida.");
+
+  // validación al enviar
+  document.querySelector("form").addEventListener("submit", function (e) {
+    const archivos = [
+      { id: "upload-certificado", mensaje: "Certificado de preescolar" },
+      { id: "upload-curp", mensaje: "CURP" },
+      { id: "upload-cartilla", mensaje: "Cartilla de vacunación" },
+      { id: "upload-acta", mensaje: "Acta de nacimiento" }
+    ];
+
+    let hayError = false;
+
+    archivos.forEach(({ id, mensaje }) => {
+      const campo = document.getElementById(id);
+      const errorSpan = document.getElementById(id + "-error");
+      const archivo = campo.files[0];
+
+      if (!archivo) {
+        errorSpan.textContent = `⚠️ Debe subir el archivo`;
+        campo.classList.add("invalid");
+        hayError = true;
+      } else if (archivo.type !== "application/pdf") {
+        errorSpan.textContent = `⚠️ Debe estar en formato PDF.`;
+        campo.classList.add("invalid");
+        hayError = true;
+      } else {
+        errorSpan.textContent = "";
+        campo.classList.remove("invalid");
+      }
+    });
+
+    if (hayError) {
+      e.preventDefault(); // bloquea el envío
+    }
+  });
+
+});
+</script>
+
+
 </body>
 </html>

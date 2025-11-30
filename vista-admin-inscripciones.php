@@ -85,6 +85,7 @@
         tbody tr{
           text-align: center
         }
+        
         td button{
           padding: 15px;
           font-size: 1rem;
@@ -96,8 +97,24 @@
           margin-left: 5px;
         }
 
-        #estado{
+        .estado-gris{
           background: #cfe0ffff;
+          font-weight: bold;
+          padding: 15px;
+          border-radius: 25px;
+          cursor: auto;
+        }
+
+        .estado-verde{
+          background-color: #A2F5A2;
+          font-weight: bold;
+          padding: 15px;
+          border-radius: 25px;
+          cursor: auto;
+        }
+
+        .estado-rechazado{
+          background-color: #F5A2A2;
           font-weight: bold;
           padding: 15px;
           border-radius: 25px;
@@ -158,14 +175,25 @@
           $resultado = $conexion->query($sql_verificar);
           //la condicion while es para recorrer todas las filas del resultado y mostrarlas
           while ($row = $resultado->fetch_assoc()){ //mientras haya filas en el resultado, el fetch_assoc las va obteniendo una por una
-              echo "<tbody>".
-              "<tr>".
-                "<td>". $row["nombre"] . "</td>".
-                "<td>". $row["apellido"] . "</td>".
-                "<td><button id='estado'>". $row["estado"] . "</button></td>".
-              '<td><button onclick="window.location.href=\'inscripcion-alumno.php?pk_usuario='. htmlspecialchars($row['pk_usuario']) . '\'"> Ver inscripcion </button></td>'.
-              "</tr>".
-            "</tbody>";
+              echo "<tbody>";
+              echo "<tr>";
+              echo "<td>". $row["nombre"] . "</td>";
+              echo "<td>". $row["apellido"] . "</td>";
+              $estado = strtolower($row["estado"]);
+              $clase_estado = "";
+
+                if ($estado === "aceptado") {
+                    $clase_estado = "estado-verde";
+                } elseif ($estado === "rechazado") {
+                    $clase_estado = "estado-rechazado";
+                } else {
+                    $clase_estado = "estado-gris";
+                }
+                echo "<td><button class='estado " . $clase_estado . "'>". $row["estado"] . "</button></td>";
+                
+              echo '<td><button onclick="window.location.href=\'inscripcion-alumno.php?pk_usuario='. htmlspecialchars($row['pk_usuario']) . '\'"> Ver inscripcion </button></td>';
+              echo "</tr>";
+              echo "</tbody>";
           }
       ?>
 
