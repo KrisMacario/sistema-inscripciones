@@ -9,23 +9,31 @@ $correo = $_POST['correo'];
 $contraseña = $_POST['contraseña'];
 $exito = false;
 
-$sql_verificar = "Select email,contraseña, nombre, apellido from usuarios where email ='$correo' and contraseña ='$contraseña'";
-$resultado = $conexion->query($sql_verificar);
-//$sql_logear = "INSERT INTO logear (pk_logear,email_o_usuario,contraseña) VALUES (Null,'$correo', '$contraseña')";
+// ✅ Incluye el rol en la consulta
+$sql_verificar = "SELECT email, contraseña, nombre, apellido, fk_rol FROM usuarios WHERE email = ? AND contraseña = ?";
+$stmt = $conexion->prepare($sql_verificar);
+$stmt->bind_param("ss", $correo, $contraseña);
+$stmt->execute();
+$resultado = $stmt->get_result();
 
+while ($row = $resultado->fetch_assoc()) {
+    session_start();
+    $_SESSION['usuario'] = $row["nombre"];
+    $_SESSION['apellido'] = $row["apellido"];
+    $_SESSION['rol'] = $row["fk_rol"]; // ✅ Guarda el rol en sesión
 
-while ($row = $resultado->fetch_assoc()){
-    if ($row["email"] == $correo and $row["contraseña"] == $contraseña){
-        session_start();
-        $_SESSION['usuario'] = $row["nombre"]; //guardar el nombre del usuario en la sesión
-        $_SESSION['apellido'] = $row["apellido"]; //guardar el apellido del usuario en la sesión
-        header("location: vista-admin-inicio.php");
-        $exito = true;
-        break;
+    // ✅ Redirige según el rol
+    if ($row["fk_rol"] == 2) {
+        header("Location: vista-director-inicio.php"); // Vista exclusiva para director
+    } else if($row["fk_rol"] == 1){
+        header("Location: vista-admin-inicio.php"); // Vista para admin
     }
-}
-if ($exito == false){
-    echo "<p>email o contraseña incorrectos</p>";
+
+    $exito = true;
+    break;
 }
 
+if ($exito == false) {
+    echo "<p>Correo o contraseña incorrectos</p>";
+}
 ?>

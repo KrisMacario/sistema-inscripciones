@@ -149,9 +149,9 @@
         </div>
         </a>
         <ul class="nav-menu">
-          <li><a href="vista-admin-inicio.php">INICIO</a></li>
-          <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
-          <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
+          <li><a href="vista-director-inicio.php">INICIO</a></li>
+          <li><a href="vista-director-inscripciones.php">INSCRIPCIONES</a></li>
+          <li><a href="pruebaVerUsuarios-director.php">USUARIOS</a></li>
         </ul>
       </div>
     </div>
@@ -186,15 +186,38 @@
     echo '<h2>' . htmlspecialchars($row["nombre"]) . '</h2>';
     echo '<h3>' . htmlspecialchars($row["nombre_rol"]) . '</h3>';
     echo '<div class="group-buttons">';
-    echo '<a id="consultar" href="vista-admin-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
+    echo '<a id="consultar" href="vista-director-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
+    echo '<a id="editar" href="vista-director-edituser.php?pk_usuario=' . $row["pk_usuario"] . '">Editar</a>';
+    echo '<a id="eliminar" href="#" onclick="eliminarUsuario(' . $row['pk_usuario'] . '); return false;">Eliminar</a>';
     echo '</div>';
     echo '</div>';
 }
 
                 ?>
+                
+                <a href="vista-director-adduser.html" id="link-add-user">
+                    <div id="card-add-user">
+                        <img src="https://cdn-icons-png.flaticon.com/512/7794/7794550.png" alt="plus" id="plus">
+                        <h3 class="kk">Agregar usuario</h3>
+                    </div>
+                </a>
 
             </main>
         </div>
     </section>
+
+    <script>
+        function eliminarUsuario(id) {
+        if (confirm("¿Estás seguro de eliminar este usuario?")) {
+            fetch("eliminar_usuario.php?id=" + id)
+            .then(() => {
+                location.reload(); //recargar
+            })
+            .catch(error => {
+                alert("Error al eliminar: " + error);
+            });
+        }
+        }
+    </script>
 </body>
 </html>

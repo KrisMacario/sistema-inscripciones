@@ -169,7 +169,7 @@ input[type="file"] {
     </style>
 
     <div id="cerrar">
-            <button onclick="window.location.href='pruebaVerUsuarios.php'">X</button>
+            <button onclick="window.location.href='pruebaVerUsuarios-director.php'">X</button>
     </div>
 
     <main>

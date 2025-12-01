@@ -110,7 +110,7 @@
 
     <!-- Botón de salir -->
     <div id="btn-salir">
-        <button onclick="window.location.href='pruebaVerUsuarios.php'">X</button>
+        <button onclick="window.location.href='pruebaVerUsuarios-director.php'">X</button>
     </div>
     
 
@@ -154,6 +154,7 @@
                         "<img src='" . htmlspecialchars($rutaWeb) . "' alt='usuario'>".
                         "<div id='NyE'>".
                             "<h2 class='name'>". $row['nombre']." ". $row['apellido']."</h2>".
+                            "<button id='edit-user' onclick=\"window.location.href='vista-director-edituser.php?pk_usuario=" . $row['pk_usuario'] . "'\">Editar usuario</button>".
                         "</div>".
                     "</div>".
                     "<hr>".

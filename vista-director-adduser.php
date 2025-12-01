@@ -140,9 +140,9 @@
         </div>
         </a>
         <ul class="nav-menu">
-          <li><a href="vista-admin-inicio.php">INICIO</a></li>
-          <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
-          <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
+          <li><a href="vista-director-inicio.php">INICIO</a></li>
+          <li><a href="vista-director-inscripciones.php">INSCRIPCIONES</a></li>
+          <li><a href="pruebaVerUsuarios-director.php">USUARIOS</a></li>
         </ul>
       </div>
     </div>
@@ -194,6 +194,21 @@ if (file_put_contents($test, "Prueba de escritura")) {
 }
 
 
+$sql_check = "SELECT COUNT(*) FROM usuarios WHERE email = ?";
+$stmt_check = $conexion->prepare($sql_check);
+$stmt_check->bind_param("s", $email_admin);
+$stmt_check->execute();
+$stmt_check->bind_result($count);
+$stmt_check->fetch();
+$stmt_check->close();
+
+if ($count > 0) {
+    echo "<script>
+      alert('⚠️ Este correo ya está registrado. Usa otro.');
+      window.location.href='vista-director-adduser.html';
+    </script>";
+    exit;
+}
 
 
     //iniciar transiccion
@@ -209,7 +224,7 @@ if (file_put_contents($test, "Prueba de escritura")) {
         $conexion -> commit();
 
         echo "<h1>Usuario agregado con éxito</h1>
-        <button onclick=\"window.location.href='vista-admin-perfil-usuario.php?pk_usuario=" . $pk_usuario . "'\">Ver perfil del usuario</button>";
+        <button onclick=\"window.location.href='vista-director-perfil-usuario.php?pk_usuario=" . $pk_usuario . "'\">Ver perfil del usuario</button>";
 
     }catch(Exception $e){
         $conexion -> rollback();
@@ -218,9 +233,9 @@ if (file_put_contents($test, "Prueba de escritura")) {
 
 ?>
 
-<button onclick="window.location.href='vista-admin-adduser.php'">Agregar otro usuario</button>
+<button onclick="window.location.href='vista-director-adduser.php'">Agregar otro usuario</button>
 
-<button onclick="window.location.href='pruebaVerUsuarios.php'">Volver a la lista de usuarios</button>
+<button onclick="window.location.href='pruebaVerUsuarios-director.php'">Volver a la lista de usuarios</button>
 
 </main>
     

@@ -139,9 +139,9 @@
         </div>
         </a>
         <ul class="nav-menu">
-          <li><a href="vista-admin-inicio.php">INICIO</a></li>
-          <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
-          <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
+          <li><a href="vista-director-inicio.php">INICIO</a></li>
+          <li><a href="vista-director-inscripciones.php">INSCRIPCIONES</a></li>
+          <li><a href="pruebaVerUsuarios-director.php">USUARIOS</a></li>
         </ul>
       </div>
     </div>
@@ -252,7 +252,7 @@ if (isset($_FILES['foto'])) {
   
 ?>
 
-<button onclick="window.location.href='pruebaVerUsuarios.php'">Volver a la lista de usuarios</button>
+<button onclick="window.location.href='pruebaVerUsuarios-director.php'">Volver a la lista de usuarios</button>
 
     
 </main>
