@@ -120,3 +120,4 @@
   </footer>
 </body>
 </html>
+y haz lo siguiente: dame  solamente el codigo para hacer que mi pagina sea RESPONSIVA DE PREFERENCIA EN CELULARES, solamenee dame el codigo para que sea responsiva y dime 
