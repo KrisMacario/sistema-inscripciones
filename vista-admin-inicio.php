@@ -19,6 +19,10 @@
     background: #F4E4A6 !important;
   }
 
+  a{
+    text-decoration: none;
+  }
+
   .anuncios-grid {
     text-align: center;
   }
@@ -74,9 +78,8 @@
 
 /*total inscritos*/
 .total {
-    margin: 20px;
     font-size: 1.2rem;
-    width: 30%;
+    width: 110%;
     height: auto;
     text-align: center;
     margin-right: 10%;
@@ -94,14 +97,68 @@
 }
 
   .total h3 {
-    margin-bottom: 10px;
     font-size: 1.5rem;
+    color: #4A90A4;
   }
 
   .divisor {
     display: flex;
-    justify-content: space-between;
+    
     align-items: flex-start;
+  }
+
+  .aprove {
+    font-size: 1.2rem;
+    width: 110%;
+    height: auto;
+    text-align: center;
+    margin-right: 10%;
+    float: right;
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    margin-top: 8%;
+  transition: transform 0.2s ease;
+  }
+
+  .aprove:hover {
+  transform: scale(1.05);
+}
+
+.aprove h3 {
+    font-size: 1.5rem;
+    color: #5caa83ff;
+  }
+
+  .rejected {
+    font-size: 1.2rem;
+    width: 110%;
+    height: auto;
+    text-align: center;
+    margin-right: 10%;
+    float: right;
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    margin-top: 8%;
+    transition: transform 0.2s ease;
+  }
+
+  .rejected:hover {
+  transform: scale(1.05);
+}
+
+.rejected h3 {
+    font-size: 1.5rem;
+    color: #d9534fff;
+  }
+
+  .dip{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
   }
 
 
@@ -166,6 +223,9 @@
     </div>
   </div>
 
+<div class="dip">
+  <!-- total inscritos -->
+
   <div class="total">
     <h3>Total de inscritos:</h3>
     <?php
@@ -175,6 +235,30 @@
       echo "<p style='font-size: 2rem;'><strong>" . $row_total['total_inscritos'] . "</strong> inscritos en total</p>";
     ?>
   </div>
+
+<!-- alumnos abrobados-->
+ <div class="aprove">
+    <h3>Alumnos aprobados:</h3>
+    <?php
+      $sql_aprobados = "SELECT COUNT(pk_usuario) AS total_aprobados FROM usuarios WHERE estado = 'aceptado'";
+      $resultado_aprobados = $conexion->query($sql_aprobados);
+      $row_aprobados = $resultado_aprobados->fetch_assoc();
+      echo "<p style='font-size: 2rem;'><strong>" . $row_aprobados['total_aprobados'] . "</strong> alumnos aprobados</p>";
+    ?>
+ </div>
+
+ <!-- alunmos rechazados-->
+  <div class="rejected">
+    <h3>Alumnos rechazados:</h3>
+    <?php
+      $sql_rechazados = "SELECT COUNT(pk_usuario) AS total_rechazados FROM usuarios WHERE estado = 'rechazado'";
+      $resultado_rechazados = $conexion->query($sql_rechazados);
+      $row_rechazados = $resultado_rechazados->fetch_assoc();
+      echo "<p style='font-size: 2rem;'><strong>" . $row_rechazados['total_rechazados'] . "</strong> alumnos rechazados</p>";
+    ?>
+ </div>
+
+</div>
 
 </div>
 

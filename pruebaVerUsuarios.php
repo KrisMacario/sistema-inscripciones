@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de usuarios</title>
     <link href="css/GlobalStyle.css" rel="stylesheet">
     <style>
 
@@ -15,7 +15,7 @@
         /* Estilos del contenedor principal */
         main {
             display: grid;
-            gap: 10px;
+            gap: 50px;
             margin: 30px -40px; /* Centrar y margen superior/inferior */
             grid-template-columns: repeat(3, 1fr);
             
@@ -29,6 +29,8 @@
 
         h3{
             margin-top: -20px;
+            color: black;
+
         }
 
         #sistema-escolar .container h1 {
@@ -42,7 +44,7 @@
         .card-container-user {
             text-align: center;
             background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
-            max-width: 350px;
+            max-width: 450px;
             height: 570px;
             padding: 30px;
             border-radius: 15px;
@@ -82,26 +84,31 @@
         .card-add-user {
             text-align: center;
             background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
-            max-width: 350px;
+            max-width: 450px;
             height: 570px;
-            margin: 30px ;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-            margin-top: 50px;
+            margin: 50px 0;
 
         }
 
         #link-add-user {
-            text-decoration: none;
-            color: black;
             text-align: center;
-            background: rgba(245, 245, 245, 0.2); /* Fondo claro para la tarjeta */
-            max-width: 350px;
+            background: rgba(245, 245, 245, 0.2); /* Fondo claro para la tarjeta, */
+            max-width: 450px;
             height: 570px;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+            margin: 50px 0;
+            text-decoration: none;
+            color: black;
+
+        }
+
+        .kk{
+            font-size: 1.5rem
         }
 
         #plus {
@@ -121,6 +128,10 @@
         /* Estilo para el botón de consultar (verde) */
         #consultar {
             background-color: #77cfa3ff;
+        }
+
+        a{
+            text-decoration: none;
         }
     </style>
 </head>
@@ -176,7 +187,7 @@
     echo '<h3>' . htmlspecialchars($row["nombre_rol"]) . '</h3>';
     echo '<div class="group-buttons">';
     echo '<a id="consultar" href="vista-admin-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
-    echo '<a id="editar" href="vista-admin-edituser.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
+    echo '<a id="editar" href="vista-admin-edituser.php?pk_usuario=' . $row["pk_usuario"] . '">Editar</a>';
     echo '<a id="eliminar" href="eliminar_usuario.php?id=' . $row['pk_usuario'] . '" onclick="return confirm(\'¿Estás seguro de eliminar a ' . htmlspecialchars($row['nombre']) . '?\')">Eliminar</a>';
     echo '</div>';
     echo '</div>';
@@ -187,7 +198,7 @@
                 <a href="vista-admin-adduser.html" id="link-add-user">
                     <div id="card-add-user">
                         <img src="https://cdn-icons-png.flaticon.com/512/7794/7794550.png" alt="plus" id="plus">
-                        <h3>Agregar usuario</h3>
+                        <h3 class="kk">Agregar usuario</h3>
                     </div>
                 </a>
 

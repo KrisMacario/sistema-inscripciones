@@ -132,7 +132,7 @@
                 $pk_usuario = $_GET['pk_usuario'];
 
                 //consultas preparadas
-                $stmt = $conexion->prepare("SELECT usuarios.pk_usuario, usuarios.telefono, usuarios.email, usuarios.nombre, usuarios.apellido, usuarios.estado, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE usuarios.pk_usuario = ?");
+                $stmt = $conexion->prepare("SELECT usuarios.pk_usuario, usuarios.telefono, usuarios.email, usuarios.nombre, usuarios.apellido, usuarios.estado, rol.nombre_rol, usuarios.foto_perfil FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE usuarios.pk_usuario = ?");
                 $stmt->bind_param("i", $pk_usuario);
                 $stmt->execute();
                 $resultado = $stmt->get_result();
@@ -140,9 +140,14 @@
                 if($resultado->num_rows > 0) {
                     $row = $resultado->fetch_assoc(); //obtener datos del usuario
 
+                    // 🔍 Verificar si el archivo existe
+                    $foto = !empty($row["foto_perfil"]) ? $row["foto_perfil"] : "icon-7797704_640.png";
+                    $rutaServidor = __DIR__ . "/fotos_perfil/" . $foto;
+                    $rutaWeb = "fotos_perfil/" . $foto;
+
                     echo "<div class='container-perfil'>". //se muestra el id del usuario
                     "<div id='subgroup'>".
-                        "<img src='https://bcw-media.s3.ap-northeast-1.amazonaws.com/large_Realistic_255556586487996_2736534a2a.jpg' alt='user-perfil'>".
+                        "<img src='" . htmlspecialchars($rutaWeb) . "' alt='usuario'>".
                         "<div id='NyE'>".
                             "<h2 class='name'>". $row['nombre']." ". $row['apellido']."</h2>".
                             "<button id='edit-user'>Editar perfil</button>".
