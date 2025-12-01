@@ -220,7 +220,7 @@ if (file_put_contents($test, "Prueba de escritura")) {
 
 <button onclick="window.location.href='vista-admin-adduser.php'">Agregar otro usuario</button>
 
-<button onclick="window.location.href='vista-admin-inicio.php'">Volver al inicio</button>
+<button onclick="window.location.href='pruebaVerUsuarios.php'">Volver a la lista de usuarios</button>
 
 </main>
     

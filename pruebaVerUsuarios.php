@@ -188,7 +188,7 @@
     echo '<div class="group-buttons">';
     echo '<a id="consultar" href="vista-admin-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
     echo '<a id="editar" href="vista-admin-edituser.php?pk_usuario=' . $row["pk_usuario"] . '">Editar</a>';
-    echo '<a id="eliminar" href="eliminar_usuario.php?id=' . $row['pk_usuario'] . '" onclick="return confirm(\'¿Estás seguro de eliminar a ' . htmlspecialchars($row['nombre']) . '?\')">Eliminar</a>';
+    echo '<a id="eliminar" href="#" onclick="eliminarUsuario(' . $row['pk_usuario'] . '); return false;">Eliminar</a>';
     echo '</div>';
     echo '</div>';
 }
@@ -205,5 +205,19 @@
             </main>
         </div>
     </section>
+
+    <script>
+        function eliminarUsuario(id) {
+        if (confirm("¿Estás seguro de eliminar este usuario?")) {
+            fetch("eliminar_usuario.php?id=" + id)
+            .then(() => {
+                location.reload(); //recargar
+            })
+            .catch(error => {
+                alert("Error al eliminar: " + error);
+            });
+        }
+        }
+    </script>
 </body>
 </html>

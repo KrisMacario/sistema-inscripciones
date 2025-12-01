@@ -30,6 +30,11 @@
       border-color: red;
     }
 
+    a{
+      text-decoration: none;
+      color: white;
+    }
+
   </style>
 
   <!-- Navegación -->
@@ -287,6 +292,52 @@ document.addEventListener("DOMContentLoaded", function() {
       e.preventDefault(); // bloquea el envío
     }
   });
+
+  //validar numeros en el telefono
+  function validarSoloNumeros(idCampo, mensaje) {
+  const campo = document.getElementById(idCampo);
+  const errorSpan = document.getElementById(idCampo + "-error");
+
+  campo.addEventListener("input", function() {
+    const valor = campo.value.trim();
+    if (!/^\d*$/.test(valor)) {
+      errorSpan.textContent = "⚠️ Solo se permiten números. " + mensaje;
+      campo.classList.add("invalid");
+    } else if (valor.length > campo.maxLength) {
+      errorSpan.textContent = "⚠️ Máximo " + campo.maxLength + " dígitos.";
+      campo.classList.add("invalid");
+    } else {
+      errorSpan.textContent = "";
+      campo.classList.remove("invalid");
+    }
+  });
+}
+
+  validarSoloNumeros("telefono", "El teléfono debe tener 10 dígitos.");
+  validarSoloNumeros("telefono_fijo", "El teléfono fijo debe tener 10 dígitos.");
+
+  //validar email
+  function validarEmailDominios(idCampo) {
+  const campo = document.getElementById(idCampo);
+  const errorSpan = document.getElementById(idCampo + "-error");
+
+  campo.addEventListener("input", function() {
+    const valor = campo.value.toLowerCase();
+    const dominiosValidos = ["@gmail.com", "@hotmail.com", "@outlook.com"];
+    const esValido = dominiosValidos.some(d => valor.endsWith(d));
+
+    if (!esValido) {
+      errorSpan.textContent = "⚠️ Solo se permiten correos Gmail, Hotmail u Outlook.";
+      campo.classList.add("invalid");
+    } else {
+      errorSpan.textContent = "";
+      campo.classList.remove("invalid");
+    }
+  });
+}
+
+  validarEmailDominios("email");
+
 
 });
 </script>

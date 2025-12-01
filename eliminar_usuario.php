@@ -39,6 +39,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 $conexion->close();
 
 // Redirección de vuelta a la lista de usuarios con un mensaje
-header("Location: pruebaverUsuarios.php?resultado=" . urlencode($mensaje));
+header("Location: pruebaverUsuarios.php");
 exit();
 ?>
