@@ -139,6 +139,7 @@
           <li><a href="vista-admin-inicio.php">INICIO</a></li>
           <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
           <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
+          <li><a href="sistema_escolar.html">CERRAR SESIÓN</a></li>
         </ul>
       </div>
     </div>
