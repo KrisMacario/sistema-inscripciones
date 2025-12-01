@@ -201,6 +201,8 @@
                 exit;
             }
 
+$foto = $Legacy_foto;
+            
 if (isset($_FILES['foto'])) {
     
 

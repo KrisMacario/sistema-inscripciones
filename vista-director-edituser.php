@@ -193,7 +193,7 @@ input[type="file"] {
                 $pk_usuario = $_GET['pk_usuario'];
 
                 //consultas preparadas
-                $stmt = $conexion->prepare("SELECT usuarios.pk_usuario, usuarios.telefono, usuarios.email, usuarios.nombre, usuarios.apellido, usuarios.estado, usuarios.telefonoFijo, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE usuarios.pk_usuario=?");
+                $stmt = $conexion->prepare("SELECT usuarios.pk_usuario, usuarios.telefono, usuarios.email, usuarios.nombre, usuarios.apellido, usuarios.estado, usuarios.telefonoFijo, rol.nombre_rol, usuarios.foto_perfil FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE usuarios.pk_usuario=?");
                 $stmt->bind_param("i", $pk_usuario);
                 $stmt->execute();
                 $resultado = $stmt->get_result();
@@ -201,11 +201,12 @@ input[type="file"] {
                 if($resultado->num_rows > 0) {
                     $row = $resultado->fetch_assoc(); //obtener datos del usuario
 
+
                     
                     echo "<form action='confirmar-editar-usuario.php?pk_usuario=".$pk_usuario."' method='post' enctype='multipart/form-data'>".
                         "<label for='foto' id='fotop'>Foto de perfil:</label>".
                         "<div class='foto-preview'>".
-                            "<img src='https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png' alt='Foto de perfil' id='preview-img'>".
+                            "<img src='fotos_perfil/" . htmlspecialchars($row["foto_perfil"]) . "' alt='Foto de perfil' id='preview-img'>".
                         "</div>".
                         "<div class='custom-file-upload'>".
                             "<label for='foto' class='upload-label'>Subir imagen</label>".
