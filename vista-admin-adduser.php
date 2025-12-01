@@ -1,4 +1,158 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuario agregado</title>
+</head>
+<body>
+
+<style>
+
+            body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f7f1c9ff;
+            text-align: center;
+            margin: 0;
+        }
+
+        h1{
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        main{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            margin-top: 5%;
+        }
+
+        img{
+            object-fit: cover;
+            width: 150px;
+            border-radius: 20%;
+            margin-left: 20px;
+        }
+
+        button{
+            margin-top: 2%;
+            background-color: #4A90A4;
+            padding: 10px;
+            width: 20%;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /*estilo de la barra de navegación*/
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    nav {
+      background: #4A90A4;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .nav-brand {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-menu a:hover {
+      color: #F4E4A6;
+    }
+
+    .btn-sistema {
+      background: #F4E4A6;
+      color: #2c3E50;
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .btn-sistema:hover {
+      background: #e8d890;
+    }
+
+    /*estilo dentro del main*/
+    main img{
+        display: block;
+        margin: auto;
+        margin-top: 5%;
+        text-align: center
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+</style>
+
+    <!--navigation bar-->
+    <nav id="inicio">
+    <div class="container">
+      <div class="nav-container">
+        <a href="index.html">  
+        <div class="nav-brand">  
+          ROSALINDA<br>
+          GUERRERO<br>
+          GAMBOA
+        </div>
+        </a>
+        <ul class="nav-menu">
+          <li><a href="vista-admin-inicio.php">INICIO</a></li>
+          <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
+          <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <img src="imagenes/simbolo-correcto.png" alt="Estudiantes de primaria" height="150">
+
+    <?php
 
     $conexion = mysqli_connect("localhost","root","","sistema_inc");
 
@@ -17,8 +171,6 @@
     $foto = 'icon-7797704_640.png'; // Imagen por defecto
 
 if (isset($_FILES['foto'])) {
-    echo "<p>Archivo recibido: " . $_FILES['foto']['name'] . "</p>";
-    echo "<p>Error de subida: " . $_FILES['foto']['error'] . "</p>";
 
     if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $fotoTmp = $_FILES['foto']['tmp_name'];
@@ -56,7 +208,8 @@ if (file_put_contents($test, "Prueba de escritura")) {
 
         $conexion -> commit();
 
-        echo "Agregado exitosamente";
+        echo "<h1>Usuario agregado con éxito</h1>
+        <button onclick=\"window.location.href='vista-admin-perfil-usuario.php?pk_usuario=" . $pk_usuario . "'\">Ver perfil del usuario</button>";
 
     }catch(Exception $e){
         $conexion -> rollback();
@@ -64,3 +217,13 @@ if (file_put_contents($test, "Prueba de escritura")) {
     }
 
 ?>
+
+<button onclick="window.location.href='vista-admin-adduser.php'">Agregar otro usuario</button>
+
+<button onclick="window.location.href='vista-admin-inicio.php'">Volver al inicio</button>
+
+</main>
+    
+</body>
+</html>
+
