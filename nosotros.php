@@ -28,7 +28,16 @@
           GAMBOA
         </div>
         </a>
-        <ul class="nav-menu">
+        
+        <!-- BOTÓN DE MENÚ (HAMBURGUESA) - **Añadido/Actualizado** -->
+        <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        
+        <!-- MENÚ DE NAVEGACIÓN - **Añadido ID** -->
+        <ul class="nav-menu" id="primary-navigation">
           <li><a href="index.html">INICIO</a></li>
           <li><a href="nosotros.php">NOSOTROS</a></li>
           <li><a href="acerca-del-equipo.html">ACERCA DEL EQUIPO</a></li>
@@ -40,45 +49,26 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <header id="hero" class="hero">
     <div class="container">
-      <div class="hero-grid">
-        <div>
-          <img src="imagenes/principal.jpeg" alt="Estudiantes de primaria">
-        </div>
-        <div>
-          <h1>ACERCA DE LA ESCUELA ROSALINDA GUERRERO GAMBOA</h1>
-          <p>Promueve el desarrollo integral del niño, enfocándose en tres planos: formación en valores, y el hábito de aprendizaje.</p>
-          <button class="btn-primary">Ver más</button>
-        </div>
+      <div class="hero-content">
+        <h1>Educación de Calidad en Reynosa</h1>
+        <p>Formamos el futuro de nuestra comunidad con valores y excelencia académica.</p>
+        <a href="#mision-vision" class="btn-primary">Conócenos más</a>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- Experiencias Section -->
-  <section class="experiencias">
+  <!-- Misión/Visión Section -->
+  <section id="mision-vision" class="mision-vision">
     <div class="container">
-      <h2>Experiencias únicas</h2>
-      <div class="experiencias-btn">
-        <button class="btn-primary">Nuestros momentos</button>
+      <div class="mision-card">
+        <h2>Nuestra Misión</h2>
+        <p>Ofrecer una educación integral y de calidad que desarrolle en nuestros alumnos las competencias, habilidades y valores necesarios para ser ciudadanos responsables y exitosos en un mundo en constante cambio.</p>
       </div>
-      <div class="gallery-grid">
-        <img src="imagenes/imagen-1-halloween.jpeg" alt="Momento escolar 1">
-        <img src="imagenes/imagen-2-dia-muertos.webp" alt="Momento escolar 2">
-        <img src="imagenes/imagen-3-celebracion.jpg" alt="Momento escolar 3">
-        <img src="imagenes/imagen-4-viva-mexico.jpg" alt="Momento escolar 4">
-      </div>
-    </div>
-  </section>
-
-  
-  <!-- Nosotros Section -->
-  <section id="nosotros" class="nosotros">
-    <div class="container">
-      <h2>Nosotros</h2>
-      <div class="nosotros-content">
-        <p>La Escuela Primaria Rosalinda Guerrero Gamboa es una institución educativa comprometida con la formación integral de niños y niñas. Nuestro enfoque pedagógico se centra en el desarrollo de valores, habilidades académicas y sociales que preparan a nuestros estudiantes para los retos del futuro.</p>
-        <p>Contamos con instalaciones modernas, personal docente calificado y un ambiente seguro que favorece el aprendizaje y el desarrollo personal de cada alumno.</p>
+      <div class="vision-card">
+        <h2>Nuestra Visión</h2>
+        <p>Ser reconocidos como una institución líder en la educación primaria, destacando por nuestro compromiso con la innovación pedagógica y por crear un ambiente de aprendizaje que favorece el aprendizaje y el desarrollo personal de cada alumno.</p>
       </div>
     </div>
   </section>
@@ -99,8 +89,11 @@
           //la condicion while es para recorrer todas las filas del resultado y mostrarlas
           $x = 0;
           while ($row = $resultado->fetch_assoc() and $x < 10){ //mientras haya filas en el resultado
+            // Formateo de la fecha (opcional, si hay un campo de fecha)
+            // $fecha_formateada = isset($row["fecha_creacion"]) ? date("d M Y", strtotime($row["fecha_creacion"])) : "Sin fecha";
             echo "<div class = 'anuncio-card'>".
               "<h3>".htmlspecialchars($row["titulo"])."</h3>".
+              // "<div class='date'>Publicado el: " . $fecha_formateada . "</div>" . // Puedes añadir la fecha si la tienes en la BD
               "<p>".htmlspecialchars($row["anuncio"])."</p>".
               "</div>";
             $x = $x + 1; 
@@ -114,10 +107,41 @@
   <footer>
     <div class="container">
       <h3>Escuela Primaria Rosalinda Guerrero Gamboa</h3>
-      <p>Valdez Balboa, Americo Villarreal Guerra I<br>Reynosa, Tamaulipas, México</p>
-      <p>© 2025 Escuela Primaria Rosalinda Guerrero Gamboa. Todos los derechos reservados.</p>
+      <p>Valdez Balboa 310, José López Portillo, 88780 Reynosa, Tamps.</p>
+      <p>&copy; 2023 Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <!-- **************************************** -->
+  <!-- CÓDIGO JAVASCRIPT PARA EL MENÚ RESPONSIVO -->
+  <!-- **************************************** -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+      const navMenuLinks = document.querySelectorAll('.nav-menu a');
+
+      // Función para alternar el estado del menú
+      const toggleMenu = () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+        navMenu.classList.toggle('active');
+      };
+
+      // 1. Manejar el clic en el botón de hamburguesa
+      menuToggle.addEventListener('click', toggleMenu);
+
+      // 2. Cerrar el menú después de hacer clic en un enlace (útil en móvil)
+      navMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          // Solo cerrar si el menú está activo (visible en móvil)
+          if (navMenu.classList.contains('active')) {
+            toggleMenu();
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
-y haz lo siguiente: dame  solamente el codigo para hacer que mi pagina sea RESPONSIVA DE PREFERENCIA EN CELULARES, solamenee dame el codigo para que sea responsiva y dime 
