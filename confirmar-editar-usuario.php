@@ -48,13 +48,25 @@ if (isset($_FILES['foto'])) {
     try{
 
         //update
+<<<<<<< HEAD:confirmar-editar-usuario.php
         $sql = "UPDATE usuarios SET nombre='$nombre_admin', apellido='$apellido_admin', telefono='$telefono_personal', telefonoFijo='$telefono_fijo', email='$email_admin', foto_perfil='$foto' WHERE pk_usuario=?";
         $conexion -> query($sql);
         $pk_usuario = $conexion -> insert_id;
+=======
+        $sql = $conexion->prepare("UPDATE usuarios SET nombre='$nombre_admin', apellido='$apellido_admin', telefono='$telefono_personal', telefonoFijo='$telefono_fijo', email='$email_admin', foto_perfil='$foto' WHERE usuarios.pk_usuario = ?");
+        if (!$stmt) {
+            throw new Exception("Error en prepare: " . $conexion->error);
+        }
+>>>>>>> 550822c04f12bd76ed36265f42d839d8257be246:confirmar editar usuario.php
 
-        $conexion -> commit();
+        $stmt->bind_param("ssssssi", $nombre_admin, $apellido_admin, $telefono_personal, $telefono_fijo, $email_admin, $foto, $pk_usuario);
 
-        echo "Agregado exitosamente";
+        if (!$stmt->execute()) {
+            throw new Exception("Error en execute: " . $stmt->error);
+        }
+
+        $conexion->commit();
+        echo "Actualizado exitosamente";
 
     }catch(Exception $e){
         $conexion -> rollback();
