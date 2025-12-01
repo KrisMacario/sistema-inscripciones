@@ -202,7 +202,7 @@ input[type="file"] {
                     $row = $resultado->fetch_assoc(); //obtener datos del usuario
 
                     
-                    echo "<form action='confirmar-editar-usuario.php' method='post' enctype='multipart/form-data'>".
+                    echo "<form action='confirmar-editar-usuario.php?pk_usuario=".$pk_usuario."' method='post' enctype='multipart/form-data'>".
                         "<label for='foto' id='fotop'>Foto de perfil:</label>".
                         "<div class='foto-preview'>".
                             "<img src='https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png' alt='Foto de perfil' id='preview-img'>".
