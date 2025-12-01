@@ -193,7 +193,7 @@ input[type="file"] {
                 $pk_usuario = $_GET['pk_usuario'];
 
                 //consultas preparadas
-                $stmt = $conexion->prepare("SELECT usuarios.pk_usuario, usuarios.telefono, usuarios.email, usuarios.nombre, usuarios.apellido, usuarios.estado, usuarios.telefonoFijo, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE usuarios.pk_usuario = ?");
+                $stmt = $conexion->prepare("SELECT usuarios.pk_usuario, usuarios.telefono, usuarios.email, usuarios.nombre, usuarios.apellido, usuarios.estado, usuarios.telefonoFijo, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE usuarios.pk_usuario=?");
                 $stmt->bind_param("i", $pk_usuario);
                 $stmt->execute();
                 $resultado = $stmt->get_result();
@@ -202,7 +202,7 @@ input[type="file"] {
                     $row = $resultado->fetch_assoc(); //obtener datos del usuario
 
                     
-                    echo "<form action='confirmar editar usuario.php' method='post' enctype='multipart/form-data'>".
+                    echo "<form action='confirmar-editar-usuario.php' method='post' enctype='multipart/form-data'>".
                         "<label for='foto' id='fotop'>Foto de perfil:</label>".
                         "<div class='foto-preview'>".
                             "<img src='https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png' alt='Foto de perfil' id='preview-img'>".
@@ -225,7 +225,7 @@ input[type="file"] {
 
                         '<div class="form-grid">'.
                             '<div class="form-group">'.
-                                '<label>Nombre</label>'.
+                                '<label>Teléfono</label>'.
                                 '<input type="text" name="telefono_personal" placeholder="'. $row['telefono'].'" maxlength="10">'.
                             '</div>'.
                             '<div class="form-group">'.
@@ -235,7 +235,7 @@ input[type="file"] {
                         '</div>'.
 
                         '<div class="form-group">'.
-                            '<label>Email</label>'.
+                            '<label>Teléfono fijo</label>'.
                             '<input type="email" name="email_admin" placeholder="'. $row['email'].'">'.
                         '</div>'.
 
