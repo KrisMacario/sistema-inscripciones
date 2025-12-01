@@ -175,12 +175,12 @@
     echo '<div class="card-container-user">';
 
 
-    // 🔍 Verificar si el archivo existe
+    // Verificar si el archivo existe
     $foto = !empty($row["foto_perfil"]) ? $row["foto_perfil"] : "icon-7797704_640.png";
     $rutaServidor = __DIR__ . "/fotos_perfil/" . $foto;
     $rutaWeb = "fotos_perfil/" . $foto;
 
-    // 🔍 Mostrar imagen
+    // Mostrar imagen
     echo '<img src="' . htmlspecialchars($rutaWeb) . '" alt="usuario">';
 
     echo '<h2>' . htmlspecialchars($row["nombre"]) . '</h2>';

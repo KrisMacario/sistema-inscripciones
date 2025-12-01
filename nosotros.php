@@ -9,6 +9,14 @@
   
 </head>
 <body>
+
+<style>
+  a{
+    text-decoration: none;
+    color: white;
+  }
+</style>
+
   <!-- Navegación -->
   <nav id="inicio">
     <div class="container">

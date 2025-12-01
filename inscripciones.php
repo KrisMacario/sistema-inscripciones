@@ -104,7 +104,7 @@
 
             // Mostrar errores si hay
             if (!empty($errors)) {
-                echo "<h3>❌ No se pudo completar la inscripción:</h3><ul>";
+                echo "<h3> No se pudo completar la inscripción:</h3><ul>";
                 foreach ($errors as $error) {
                     echo "<li>$error</li>";
                 }
