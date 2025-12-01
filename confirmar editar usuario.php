@@ -50,13 +50,19 @@ if (file_put_contents($test, "Prueba de escritura")) {
     try{
 
         //update
-        $sql = "UPDATE usuarios SET nombre='$nombre_admin', apellido='$apellido_admin', telefono='$telefono_personal', telefonoFijo='$telefono_fijo', email='$email_admin', foto_perfil='$foto' WHERE usuarios.pk_usuario = ?";
-        $conexion -> query($sql);
-        $pk_usuario = $conexion -> insert_id;
+        $sql = $conexion->prepare("UPDATE usuarios SET nombre='$nombre_admin', apellido='$apellido_admin', telefono='$telefono_personal', telefonoFijo='$telefono_fijo', email='$email_admin', foto_perfil='$foto' WHERE usuarios.pk_usuario = ?");
+        if (!$stmt) {
+            throw new Exception("Error en prepare: " . $conexion->error);
+        }
 
-        $conexion -> commit();
+        $stmt->bind_param("ssssssi", $nombre_admin, $apellido_admin, $telefono_personal, $telefono_fijo, $email_admin, $foto, $pk_usuario);
 
-        echo "Agregado exitosamente";
+        if (!$stmt->execute()) {
+            throw new Exception("Error en execute: " . $stmt->error);
+        }
+
+        $conexion->commit();
+        echo "Actualizado exitosamente";
 
     }catch(Exception $e){
         $conexion -> rollback();
