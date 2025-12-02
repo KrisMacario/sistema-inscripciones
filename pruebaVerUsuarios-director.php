@@ -21,6 +21,20 @@
             
         }
 
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            main {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+
         .container {
         max-width: 1200px;
         margin: 0 auto;
@@ -43,296 +57,238 @@
         /* Estilos de la tarjeta de usuario */
         .card-container-user {
             text-align: center;
-            background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
-            max-width: 450px;
-            height: 570px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-            margin: 50px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f0f0f0;
+            transition: transform 0.3s ease;
         }
 
-        /* Estilos para la imagen de perfil */
-        img {
+        .card-container-user:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-container-user img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
             object-fit: cover;
-            width: 300px;
-            height: 300px;
-            border-radius: 45%;
+            margin-bottom: 10px;
         }
 
-        /* Contenedor de botones */
+        .card-container-user h2 {
+            font-size: 1.8rem;
+            margin: 5px 0;
+            color: #4A90A4;
+        }
+
+        .card-container-user h3 {
+            font-size: 1.2rem;
+            margin: 0 0 15px 0;
+            color: #555;
+        }
+
         .group-buttons {
             display: flex;
-            flex-direction: row;
-            gap: 15px;
-            margin-top: 40px;
             justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        /* Estilos base de los botones */
-        .group-buttons button, .group-buttons a {
+        .group-buttons a {
             padding: 10px 15px;
-            border-radius: 20px;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none; /* Quitar subrayado a los enlaces */
-            color: white; /* Color de texto blanco por defecto */
-            display: inline-block; /* Permitir padding y width/height en 'a' */
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
         }
 
-        .card-add-user {
-            text-align: center;
-            background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
-            max-width: 450px;
-            height: 570px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-            margin: 50px 0;
+        #consultar {
+            background-color: #4A90A4;
+        }
 
+        #consultar:hover {
+            background-color: #3d798a;
+        }
+
+        #editar {
+            background-color: #FFA500; /* Naranja */
+        }
+
+        #editar:hover {
+            background-color: #cc8400;
+        }
+
+        #eliminar {
+            background-color: #E74C3C; /* Rojo */
+        }
+
+        #eliminar:hover {
+            background-color: #c0392b;
+        }
+
+        /* Estilos para la tarjeta de agregar usuario */
+        #card-add-user {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #4A90A4;
+            background-color: #eaf6ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Asegura que ocupe el espacio de una tarjeta normal */
+            min-height: 200px; /* Altura mínima para que se vea bien */
+            transition: background-color 0.2s ease;
+        }
+
+        #card-add-user:hover {
+            background-color: #d8ecff;
+        }
+
+        #card-add-user #plus {
+            width: 50px;
+            height: 50px;
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        #card-add-user h3 {
+            color: #4A90A4;
+            font-weight: 700;
         }
 
         #link-add-user {
-            text-align: center;
-            background: rgba(245, 245, 245, 0.2); /* Fondo claro para la tarjeta, */
-            max-width: 450px;
-            height: 570px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-            margin: 50px 0;
-            text-decoration: none;
-            color: black;
-
-        }
-
-        .kk{
-            font-size: 1.5rem
-        }
-
-        #plus {
-            margin-top: 70px;
-        }
-
-        /* Estilo para el botón de eliminar (rojo) */
-        #eliminar {
-            background-color: #ce6868ff;
-        }
-
-        /* Estilo para el botón de editar (azul) */
-        #editar {
-            background-color: #94a5e7ff;
-        }
-
-        /* Estilo para el botón de consultar (verde) */
-        #consultar {
-            background-color: #77cfa3ff;
-        }
-
-        a{
             text-decoration: none;
         }
-         @media (max-width: 768px) {
 
-        /* --- GLOBAL --- */
+        /* --- ESTILOS DEL MODAL DE CONFIRMACIÓN --- */
         
-        /* Asegura que el cuerpo no tenga márgenes que causen scroll lateral */
-        body {
-            padding: 0 10px; /* Un poco de padding en los lados */
-        }
-
-        /* Ajusta el padding general de los contenedores */
-        .container {
-            padding: 0 10px;
-        }
-
-        /* --- NAVEGACIÓN (nav-menu) --- */
-        
-        /* Ocultar el menú horizontal y mostrarlo como columna */
-        .nav-menu {
-            display: none; /* Oculta el menú grande por defecto */
-            flex-direction: column;
-            width: 100%;
-            text-align: center;
-            background: #4A90A4; /* Fondo del menú */
-            position: absolute;
-            top: 60px; /* Justo debajo de la barra de navegación */
+        .modal-overlay {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0;
             left: 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
         }
-        
-        /* Mostrar el menú si el usuario decide implementar un botón de "menú hamburguesa" */
-        /* Por ahora, solo lo preparamos para que se muestre como columna. */
-        .nav-container {
-            flex-direction: column; /* Apila el logo y el menú (si se muestra) */
-            align-items: flex-start;
-            padding: 10px;
-        }
-        
-        /* El botón del sistema debe ocupar todo el ancho */
-        .btn-sistema {
+
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
             width: 90%;
-            margin-top: 10px;
             text-align: center;
         }
-        
-        /* --- GRID DE TARJETAS (como en pruebaVerUsuarios_direcor.php) --- */
 
-        /* Cambia la vista de 3 columnas a 1 columna para que las tarjetas se apilen */
-        main {
-            grid-template-columns: 1fr !important; /* !important es para asegurar que anule el grid existente */
-            gap: 30px !important;
-            margin: 20px 0 !important;
-        }
-        
-        /* Ajusta el tamaño de la imagen del perfil en las tarjetas */
-        .card-container-user img, #card-add-user img {
-            width: 80px !important;
-            height: 80px !important;
-        }
-        
-        /* Ajusta el tamaño de los botones en las tarjetas de usuario */
-        .group-buttons {
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .group-buttons a, .group-buttons button {
-            width: 100%;
+        .modal-content h2 {
+            margin-top: 0;
+            color: #E74C3C;
         }
 
-
-        /* --- TABLAS (como en mostrar-usuarios-sistema.php) --- */
-
-        /* Hace que la tabla no se salga de la pantalla forzando un scroll horizontal solo para ella */
-        .table-responsive {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
         }
 
-        /* Las tablas de Bootstrap se vuelven responsivas con una clase en un div contenedor */
-        /* Para esto, envuelve tu tabla en un div con esta clase: */
-        /* <div class="table-responsive">
-            <table class="table table-dark table-striped">...</table>
-        </div> */
-        
-        /* --- FORMULARIOS --- */
-        
-        /* Ajusta el ancho de los elementos de formulario y botones para que sean más grandes */
-        .form-group, button {
-            width: 100%;
-            max-width: 400px; /* Ancho máximo para que no se extienda demasiado en tabletas */
-        }
-        
-        /* Ajusta el ancho de botones grandes */
-        #regresar_btn, button {
-            width: 80%; 
-            margin: 10px auto;
-            padding: 15px;
-            font-size: 1.1rem;
-        }
-        
-        /* --- ANUNCIOS (en nosotros.php) --- */
-
-        /* Cambia el grid de anuncios a una sola columna */
-        .anuncios-grid {
-            grid-template-columns: 1fr !important;
-            gap: 20px !important;
+        .modal-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
         }
 
-        /* --- Ficha de Inscripción Específica (Para este archivo) --- */
-
-        /* Apila los grupos de datos en la ficha */
-        .datos-grupo {
-            flex-direction: column;
-            gap: 10px;
+        #btn-confirmar {
+            background-color: #E74C3C;
+            color: white;
         }
 
-        /* Las tarjetas de documentos ocupan todo el ancho, no el 45% */
-        #documentos-container {
-            flex-direction: column;
-            gap: 15px;
+        #btn-confirmar:hover {
+            background-color: #c0392b;
         }
 
-        .documento-card {
-            width: 100%;
-            max-width: 350px;
-            margin: 0 auto;
+        #btn-cancelar {
+            background-color: #ccc;
+            color: #333;
         }
 
-        /* Apila los botones de Aceptar/Rechazar */
-        .boones {
-            flex-direction: column;
-            gap: 15px;
-            width: 90%;
+        #btn-cancelar:hover {
+            background-color: #bbb;
         }
 
-        .aceptar, .rechazar {
-            width: 100%;
-        }
-    }
     </style>
 </head>
 <body>
 
+    <!-- Navegación y otros elementos HTML (asumimos que están incluidos por GlobalStyle.css) -->
 
-    <nav id="inicio">
-    <div class="container">
-      <div class="nav-container">
-        <a href="index.html">  
-        <div class="nav-brand">  
-          ROSALINDA<br>
-          GUERRERO<br>
-          GAMBOA
-        </div>
-        </a>
-        <ul class="nav-menu">
-          <li><a href="vista-director-inicio.php">INICIO</a></li>
-          <li><a href="vista-director-inscripciones.php">INSCRIPCIONES</a></li>
-          <li><a href="pruebaVerUsuarios-director.php">USUARIOS</a></li>
-          <li><a href="sistema_escolar.html">CERRAR SESIÓN</a></li>
-        </ul>
-      </div>
-    </div>
-</nav>
-
-    <section id="sistema-escolar" class="sistema-escolar">
+    <section id="sistema-escolar">
         <div class="container">
-            <h1>Usuarios</h1>
+            <h1>Usuarios del Sistema</h1>
             <main>
                 <?php
+                // Archivo de conexión a la base de datos (asegúrate de que "conexion.php" sea tu archivo de conexión real)
                 $conexion = new mysqli("localhost", "root", "", "sistema_inc");
+
                 if ($conexion->connect_error) {
                     die("Error de conexión: " . $conexion->connect_error);
                 }
 
-                $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.foto_perfil, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 1";
-                $resultado = $conexion->query($sql_verificar);
+                // Consulta SQL: Obtener todos los usuarios y su rol, excluyendo al rol con fk_rol = 1 (Admin)
+                // Se asume que el rol 1 es el administrador principal y no debe listarse.
+                $sql = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.foto_perfil, rol.nombre_rol 
+                        FROM usuarios 
+                        JOIN rol ON usuarios.fk_rol = rol.pk_rol
+                        WHERE usuarios.fk_rol != 1
+                        ORDER BY usuarios.pk_usuario ASC";
 
-                // La condición while es para recorrer todas las filas del resultado y mostrarlas
-               while ($row = $resultado->fetch_assoc()) {
-    echo '<div class="card-container-user">';
+                $resultado = $conexion->query($sql);
 
+                while ($row = $resultado->fetch_assoc()) {
+                    // Determinar la ruta de la imagen
+                    $rutaBase = "fotos_perfil/"; 
+                    $nombreArchivo = $row["foto_perfil"];
+                    
+                    // Si el nombre del archivo está vacío o es nulo, usamos un placeholder.
+                    if (empty($nombreArchivo) || $nombreArchivo == 'null') {
+                        $rutaWeb = "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"; // Placeholder
+                    } else {
+                        // Construye la ruta web si la imagen existe
+                        // Nota: La ruta real puede depender de la configuración de tu servidor web
+                        $rutaWeb = $rutaBase . htmlspecialchars($nombreArchivo);
+                    }
 
-    // Verificar si el archivo existe
-    $foto = !empty($row["foto_perfil"]) ? $row["foto_perfil"] : "icon-7797704_640.png";
-    $rutaServidor = __DIR__ . "/fotos_perfil/" . $foto;
-    $rutaWeb = "fotos_perfil/" . $foto;
+                    // Generar la tarjeta de usuario
+                    echo '<div class="card-container-user">';
+                    echo '<img src="' . htmlspecialchars($rutaWeb) . '" alt="usuario">';
+                    echo '<h2>' . htmlspecialchars($row["nombre"]) . ' ' . htmlspecialchars($row["apellido"]) . '</h2>';
+                    echo '<h3>' . htmlspecialchars($row["nombre_rol"]) . '</h3>';
+                    echo '<div class="group-buttons">';
+                    
+                    // Enlaces de acción
+                    echo '<a id="consultar" href="vista-director-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
+                    echo '<a id="editar" href="vista-director-edituser.php?pk_usuario=' . $row["pk_usuario"] . '">Editar</a>';
+                    
+                    // Llama a la función de confirmación con modal
+                    echo '<a id="eliminar" href="#" onclick="mostrarModalEliminar(' . $row['pk_usuario'] . '); return false;">Eliminar</a>';
+                    
+                    echo '</div>';
+                    echo '</div>';
+                }
 
-    // Mostrar imagen
-    echo '<img src="' . htmlspecialchars($rutaWeb) . '" alt="usuario">';
-
-    echo '<h2>' . htmlspecialchars($row["nombre"]) . '</h2>';
-    echo '<h3>' . htmlspecialchars($row["nombre_rol"]) . '</h3>';
-    echo '<div class="group-buttons">';
-    echo '<a id="consultar" href="vista-director-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
-    echo '<a id="editar" href="vista-director-edituser.php?pk_usuario=' . $row["pk_usuario"] . '">Editar</a>';
-    echo '<a id="eliminar" href="#" onclick="eliminarUsuario(' . $row['pk_usuario'] . '); return false;">Eliminar</a>';
-    echo '</div>';
-    echo '</div>';
-}
-
+                $conexion->close();
                 ?>
                 
                 <a href="vista-director-adduser.html" id="link-add-user">
@@ -346,18 +302,69 @@
         </div>
     </section>
 
+    <!-- Modal de Confirmación Personalizado -->
+    <div id="delete-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Confirmar Eliminación</h2>
+            <p>¿Estás **seguro** de que deseas eliminar a este usuario del sistema? Esta acción es irreversible.</p>
+            <div class="modal-buttons">
+                <button id="btn-cancelar">Cancelar</button>
+                <button id="btn-confirmar" data-user-id="">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+
     <script>
-        function eliminarUsuario(id) {
-        if (confirm("¿Estás seguro de eliminar este usuario?")) {
-            fetch("eliminar_usuario.php?id=" + id)
-            .then(() => {
-                location.reload(); //recargar
-            })
-            .catch(error => {
-                alert("Error al eliminar: " + error);
-            });
+        // Variable global para almacenar el ID del usuario a eliminar
+        let userIdToDelete = null;
+        const deleteModal = document.getElementById('delete-modal');
+        const btnConfirmar = document.getElementById('btn-confirmar');
+        const btnCancelar = document.getElementById('btn-cancelar');
+
+        // 1. Mostrar el Modal
+        function mostrarModalEliminar(id) {
+            userIdToDelete = id; // Guarda el ID
+            deleteModal.style.display = 'flex'; // Muestra el modal
         }
+
+        // 2. Cerrar el Modal
+        function cerrarModal() {
+            deleteModal.style.display = 'none';
+            userIdToDelete = null; // Limpia el ID
         }
+
+        // Evento para cerrar el modal al hacer clic en Cancelar
+        btnCancelar.addEventListener('click', cerrarModal);
+
+        // Evento para cerrar el modal haciendo clic en el overlay (fondo)
+        deleteModal.addEventListener('click', (event) => {
+            if (event.target === deleteModal) {
+                cerrarModal();
+            }
+        });
+
+        // 3. Función para ejecutar la eliminación
+        btnConfirmar.addEventListener('click', () => {
+            if (userIdToDelete !== null) {
+                // Ejecutar la solicitud de eliminación
+                fetch("eliminar_usuario.php?id=" + userIdToDelete)
+                    .then(response => response.text())
+                    .then(data => {
+                        // Una vez eliminado, recarga la página para ver la lista actualizada
+                        // En un entorno de producción, sería mejor actualizar la lista sin recargar.
+                        alert('Usuario eliminado exitosamente. Recargando lista...');
+                        window.location.reload(); 
+                    })
+                    .catch(error => {
+                        console.error("Error al eliminar el usuario:", error);
+                        alert('Hubo un error al eliminar el usuario.');
+                        cerrarModal(); // Cierra el modal en caso de error
+                    });
+            }
+            cerrarModal(); // Cierra el modal inmediatamente después de iniciar la petición
+        });
+
     </script>
 </body>
 </html>
