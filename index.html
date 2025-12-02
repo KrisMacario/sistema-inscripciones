@@ -17,6 +17,59 @@
       color: white;
     }
 
+    /*para el menu de hamburguesa*/
+    .menu {
+      display: none;
+    }
+
+    .burger {
+      display: none;
+      font-size: 2.3rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    /*modo responsive para el menu de hamburguesa*/
+    @media (max-width: 768px) {
+      .burger {
+        display: block;
+      }
+
+      .nav-menu {
+        position: fixed;
+        flex-direction: column;
+        background-color: #333;
+        top: 100px;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        display: flex;
+      }
+
+      .nav-menu li {
+        margin: 5px 0;
+        margin-top: 10%;
+        text-align: center;
+      }
+
+      .menu:checked ~ .nav-menu {
+        display: flex;
+        transform: translateX(0);
+      }
+
+      .btn-sistema {
+        padding: 10px 15px;
+        background: none;
+        border-radius: 5px;
+      }
+
+      .btn-sistema:hover {
+        background: none;
+      }
+    }
+
   </style>
 
   <!-- Navegación -->
@@ -30,10 +83,11 @@
           GAMBOA
         </div>
         </a>
+        <input type="checkbox" class="menu" id="menu">
+        <label for="menu" class="burger">☰</label>
         <ul class="nav-menu">
           <li><a href="index.html">INICIO</a></li>
           <li><a href="nosotros.php">NOSOTROS</a></li>
-          <li><a href="acerca-del-equipo.html">ACERCA DEL EQUIPO</a></li>
           <li><a href="inscripciones.html">INSCRIPCIÓN</a></li>
           <li><a href="sistema_escolar.html" class="btn-sistema">SISTEMA ESCOLAR</a></li>
         </ul>

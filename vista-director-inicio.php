@@ -6,6 +6,7 @@
   <title>Escuela Primaria Rosalinda Guerrero Gamboa</title>
   <meta name="description" content="Escuela Primaria Rosalinda Guerrero Gamboa - Educación de calidad para niños">
   <link href="css/GlobalStyle.css" rel="stylesheet"/>
+  <link href="css/vista-director-inicio.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -175,6 +176,8 @@
           GAMBOA
         </div>
         </a>
+        <input type="checkbox" class="menu" id="menu">
+        <label for="menu" class="burger">☰</label></ul>
         <ul class="nav-menu">
           <li><a href="vista-director-inicio.php">INICIO</a></li>
           <li><a href="vista-director-inscripciones.php">INSCRIPCIONES</a></li>
