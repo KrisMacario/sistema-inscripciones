@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Escuela Primaria Rosalinda Guerrero Gamboa</title>
   <meta name="description" content="Escuela Primaria Rosalinda Guerrero Gamboa - Educación de calidad para niños">
+    <link href="css/vista-director-inicio.css" rel="stylesheet" />
   <link href="css/GlobalStyle.css" rel="stylesheet"/>
-  <link href="css/vista-director-inicio.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -177,7 +177,7 @@
         </div>
         </a>
         <input type="checkbox" class="menu" id="menu">
-        <label for="menu" class="burger">☰</label></ul>
+        <label for="menu" class="burger">☰</label>
         <ul class="nav-menu">
           <li><a href="vista-director-inicio.php">INICIO</a></li>
           <li><a href="vista-director-inscripciones.php">INSCRIPCIONES</a></li>
