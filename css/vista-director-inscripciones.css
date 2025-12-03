@@ -174,18 +174,16 @@ cursor: auto;
   }
 
   .estado-gris{
-    font-size: .6rem;
+    font-size: .8rem;
     }
 
-.estado-verde{
-    font-size: .6rem;
+  .estado-verde{
+      font-size: .8rem;
+  }
 
-}
-
-.estado-rechazado{
-    font-size: .6rem;
-
-}
+  .estado-rechazado{
+      font-size: .8rem;
+  }
 
   table{
     margin: 0;

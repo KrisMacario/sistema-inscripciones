@@ -177,7 +177,7 @@
             try{
 
                 //insertar alumno
-                $conexion -> query("INSERT INTO usuarios(nombre, apellido, direccion, fk_rol, estado) VALUES('$nombre_alumno', '$apellido_alumno', '$domicilio', 6, 'En proceso')");
+                $conexion -> query("INSERT INTO usuarios(nombre, apellido, direccion, fk_rol, estado) VALUES('$nombre_alumno', '$apellido_alumno', '$domicilio', 6, 'pendiente')");
                 $pk_alumno = $conexion -> insert_id;
 
                 //datos del alumno
