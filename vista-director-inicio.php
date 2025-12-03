@@ -5,164 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Escuela Primaria Rosalinda Guerrero Gamboa</title>
   <meta name="description" content="Escuela Primaria Rosalinda Guerrero Gamboa - Educación de calidad para niños">
-    <link href="css/vista-director-inicio.css" rel="stylesheet" />
   <link href="css/GlobalStyle.css" rel="stylesheet"/>
+  <link href="css/vista-director-inicio.css" rel="stylesheet" />
 </head>
 <body>
 
-<!-- Agregar estilos específicos para esta página -->
 <style>
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: #F4E4A6 !important;
+  .container h2{
+    margin-top: -3%;
+    font-size: 1.7rem;
   }
 
-  a{
-    text-decoration: none;
+  h2{
+    font-size: 1rem;
   }
 
-  .anuncios-grid {
-    text-align: center;
+  h3{
+    font-size: 1rem;
   }
-
-  /*estilos para la tarjeta de cupos */
-  .cupos {
-    margin: 20px;
-    font-size: 1.2rem;
-    width: 40%;
-    height: auto;
-    text-align: center;
-    margin-left: 10%;
-  }
-
-  .cupos h3 {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-  }
-
-  .cupos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.tarjeta-cupo {
-  background-color: #f5f5f5;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
-  width: 200px;
-  text-align: center;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-}
-
-.tarjeta-cupo:hover {
-  transform: scale(1.05);
-}
-
-.tarjeta-cupo h4 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.tarjeta-cupo p {
-  margin: 5px 0;
-  font-size: 1rem;
-}
-
-/*total inscritos*/
-.total {
-    font-size: 1.2rem;
-    width: 110%;
-    height: auto;
-    text-align: center;
-    margin-right: 10%;
-    float: right;
-    background: #f5f5f5;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-    margin-top: 6%;
-  transition: transform 0.2s ease;
-  }
-
-  .total:hover {
-  transform: scale(1.05);
-}
-
-  .total h3 {
-    font-size: 1.5rem;
-    color: #4A90A4;
-  }
-
-  .divisor {
-    display: flex;
-    
-    align-items: flex-start;
-  }
-
-  .aprove {
-    font-size: 1.2rem;
-    width: 110%;
-    height: auto;
-    text-align: center;
-    margin-right: 10%;
-    float: right;
-    background: #f5f5f5;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-    margin-top: 8%;
-  transition: transform 0.2s ease;
-  }
-
-  .aprove:hover {
-  transform: scale(1.05);
-}
-
-.aprove h3 {
-    font-size: 1.5rem;
-    color: #5caa83ff;
-  }
-
-  .rejected {
-    font-size: 1.2rem;
-    width: 110%;
-    height: auto;
-    text-align: center;
-    margin-right: 10%;
-    float: right;
-    background: #f5f5f5;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-    margin-top: 8%;
-    transition: transform 0.2s ease;
-  }
-
-  .rejected:hover {
-  transform: scale(1.05);
-}
-
-.rejected h3 {
-    font-size: 1.5rem;
-    color: #d9534fff;
-  }
-
-  .dip{
-    display: flex;
-    flex-direction: column;
-    margin-left: 15%;
-  }
-
-
 </style>
 
   <!-- Navegación -->
@@ -236,7 +96,7 @@
       $sql_total = "SELECT COUNT(pk_alumno) AS total_inscritos FROM alumno_datos";
       $resultado_total = $conexion->query($sql_total);
       $row_total = $resultado_total->fetch_assoc();
-      echo "<p style='font-size: 2rem;'><strong>" . $row_total['total_inscritos'] . "</strong> inscritos en total</p>";
+      echo "<p class='total-inscritos'><strong>" . $row_total['total_inscritos'] . "</strong> inscritos en total</p>";
     ?>
   </div>
 
@@ -247,7 +107,7 @@
       $sql_aprobados = "SELECT COUNT(pk_usuario) AS total_aprobados FROM usuarios WHERE estado = 'aceptado'";
       $resultado_aprobados = $conexion->query($sql_aprobados);
       $row_aprobados = $resultado_aprobados->fetch_assoc();
-      echo "<p style='font-size: 2rem;'><strong>" . $row_aprobados['total_aprobados'] . "</strong> alumnos aprobados</p>";
+      echo "<p class='total-aprobados'><strong>" . $row_aprobados['total_aprobados'] . "</strong> alumnos aprobados</p>";
     ?>
  </div>
 
@@ -258,7 +118,7 @@
       $sql_rechazados = "SELECT COUNT(pk_usuario) AS total_rechazados FROM usuarios WHERE estado = 'rechazado'";
       $resultado_rechazados = $conexion->query($sql_rechazados);
       $row_rechazados = $resultado_rechazados->fetch_assoc();
-      echo "<p style='font-size: 2rem;'><strong>" . $row_rechazados['total_rechazados'] . "</strong> alumnos rechazados</p>";
+      echo "<p class='total-rechazados'><strong>" . $row_rechazados['total_rechazados'] . "</strong> alumnos rechazados</p>";
     ?>
  </div>
 

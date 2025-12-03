@@ -1,45 +1,259 @@
-/*media query para el menu de hamburguesa de vista-director-inicio*/
 
-  /* Estilos para el menu de hamburguesa */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #F4E4A6 !important;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  .anuncios-grid {
+    text-align: center;
+  }
+
+  /*estilos para la tarjeta de cupos */
+  .cupos {
+    margin: 20px;
+    font-size: 1.2rem;
+    width: 20%;
+    height: auto;
+    text-align: center;
+    margin-left: 20%;
+    margin-top: -2.5%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cupos h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+
+  .cupos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  justify-content: center;
+}
+
+.tarjeta-cupo {
+  background-color: #f5f5f5;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.tarjeta-cupo:hover {
+  transform: scale(1.05);
+}
+
+.tarjeta-cupo h4 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.tarjeta-cupo p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+/*total inscritos*/
+.total {
+    font-size: 1.2rem;
+    width: 110%;
+    height: auto;
+    text-align: center;
+    margin-right: 10%;
+    float: right;
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  }
+
+  .total:hover {
+  transform: scale(1.05);
+}
+
+  .total h3 {
+    font-size: 1.5rem;
+    color: #4A90A4;
+  }
+
+  .divisor {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .aprove {
+    font-size: 1.2rem;
+    width: 110%;
+    height: auto;
+    text-align: center;
+    margin-right: 10%;
+    float: right;
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    margin-top: 8%;
+  transition: transform 0.2s ease;
+  }
+
+  .aprove:hover {
+  transform: scale(1.05);
+}
+
+.aprove h3 {
+    font-size: 1.5rem;
+    color: #5caa83ff;
+  }
+
+  .rejected {
+    font-size: 1.2rem;
+    width: 110%;
+    height: auto;
+    text-align: center;
+    margin-right: 10%;
+    float: right;
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    margin-top: 8%;
+    transition: transform 0.2s ease;
+  }
+
+  .rejected:hover {
+  transform: scale(1.05);
+}
+
+.rejected h3 {
+    font-size: 1.5rem;
+    color: #d9534fff;
+  }
+
+  .dip{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+
 .menu {
-      display: none;
-    }
+  display: none; /* ocultamos el checkbox */
+}
 
-    .burger {
-      display: none;
-      font-size: 2.3rem;
-      cursor: pointer;
-      color: white;
-    }
+.burger {
+  display: none;
+  font-size: 2.3rem;
+  cursor: pointer;
+  color: white;
+}
 
+/* Estilos normales del menú en escritorio */
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.total-inscritos, .total-aprobados, .total-rechazados {
+  font-size: 1.7rem;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+
+
+/* Estilos para móvil */
 @media (max-width: 768px) {
-
   .burger {
-        display: block;
-      }
+    display: block; /* aparece el ícono hamburguesa */
+  }
 
-    .nav-menu {
-        position: fixed;
-        flex-direction: column;
-        background-color: #333;
-        top: 100px;
-        right: 0;
-        width: 100%;
-        height: 100vh;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-        display: flex;
-      }
+  .nav-menu {
+    position: fixed;
+    flex-direction: column;
+    background-color: #333;
+    top: 100px;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(-100%); /* oculto fuera de pantalla */
+    transition: transform 0.3s ease-in-out;
+    padding-top: 2rem;
+  }
 
-      .nav-menu li {
-        margin: 5px 0;
-        margin-top: 10%;
-        text-align: center;
-      }
+  .nav-menu li {
+    margin: 1rem 0;
+    text-align: center;
+  }
 
-      .menu:checked ~ .nav-menu {
-        display: flex;
-        transform: translateX(0);
-      }
+  /* cuando el checkbox está marcado */
+  .menu:checked ~ .nav-menu {
+    transform: translateX(0); /* se desliza dentro */
+  }
+
+  /*ajustes del divisor de anuncios*/
+  .divisor {
+    flex-direction: column;
+    margin-top: -15%;
+  }
+
+  h3{
+    font-size: 1rem;
+  }
+
+  .total-inscritos{
+    font-size: 1.3rem;
+  }
+
+  .total-aprobados{
+    font-size: 1.3rem;
+  }
+
+  .total-rechazados{
+    font-size: 1.3rem;
+  }
+
+  .cupos, .dip{
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .cupos-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .tarjeta-cupo {
+    width: 90%;
+    max-width: 350px;
+    float: none;
+    margin: .2rem auto;
+  }
+
+  .total, .aprove, .rejected {
+    width: 90%;
+    max-width: 350px;
+    margin: 1rem auto;
+    float: none;
+  }
 
 }

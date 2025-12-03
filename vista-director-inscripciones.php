@@ -6,123 +6,9 @@
   <title>Escuela Primaria Rosalinda Guerrero Gamboa</title>
   <meta name="description" content="Escuela Primaria Rosalinda Guerrero Gamboa - Educación de calidad para niños">
   <link href="css/GlobalStyle.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/vista-director-inscripciones.css">
 </head>
 <body>
-
-<style>
-
-
-        main{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 20px;
-        }
-
-        #add{
-            margin-top: 10px;
-            text-align: center;
-            display: block;
-            font-size: 1.7rem;
-        }
-
-        #plus{
-            width: 180px;
-            height: 180px;
-            margin-top: 70px;
-        }
-
-        h1{
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        h2, h3{
-            text-align: center;
-        }
-
-        h3{
-            margin-top: -25px;
-        }
-
-        img{
-            object-fit: cover;
-            width: 300px;
-            height: 300px;
-            border-radius: 45%;
-        }
-
-        a{
-            text-decoration: none;
-            color: #4d4c4cff;
-        }
-
-        .cont-user{
-            margin: 20px;
-            border: none;
-            padding: 15px 20px;
-            background-color: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        table{
-            border-collapse: separate;
-            border-spacing: 10px 25px;
-            margin: 20px;
-        }
-
-        th{
-          font-size: 1.5rem;
-        }
-
-        td{
-          font-size: 1.2rem;
-        }
-
-        tbody tr{
-          text-align: center
-        }
-        
-        td button{
-          padding: 15px;
-          font-size: 1rem;
-          cursor: pointer;
-          background: #A2BFF5;
-          border: none;
-          border-radius: 25px;
-          color: #2e2e2eff;
-          margin-left: 5px;
-        }
-
-        .estado-gris{
-          background: #cfe0ffff;
-          font-weight: bold;
-          padding: 15px;
-          border-radius: 25px;
-          cursor: auto;
-        }
-
-        .estado-verde{
-          background-color: #A2F5A2;
-          font-weight: bold;
-          padding: 15px;
-          border-radius: 25px;
-          cursor: auto;
-        }
-
-        .estado-rechazado{
-          background-color: #F5A2A2;
-          font-weight: bold;
-          padding: 15px;
-          border-radius: 25px;
-          cursor: auto;
-        }
-
-    </style>
-
 
   <!-- Navegación -->
   <nav id="inicio">
@@ -135,6 +21,8 @@
           GAMBOA
         </div>
         </a>
+        <input type="checkbox" class="menu" id="menu">
+        <label for="menu" class="burger">☰</label>
         <ul class="nav-menu">
           <li><a href="vista-director-inicio.php">INICIO</a></li>
           <li><a href="vista-director-inscripciones.php">INSCRIPCIONES</a></li>
