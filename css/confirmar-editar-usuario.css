@@ -1,0 +1,188 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f7f1c9ff;
+    text-align: center;
+    margin: 0;
+}
+
+/*menu de navegacion*/
+.menu {
+  display: none; /* ocultamos el checkbox */
+}
+
+.burger {
+  display: none;
+  font-size: 2.3rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Estilos normales del menú en escritorio */
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+h1{
+    text-align: center;
+    margin-top: 20px;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    margin-top: 5%;
+}
+
+img{
+    object-fit: cover;
+    width: 150px;
+    border-radius: 20%;
+    margin-left: 20px;
+}
+
+button{
+    margin-top: 2%;
+    background-color: #4A90A4;
+    padding: 10px;
+    width: 20%;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/*estilo de la barra de navegación*/
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+nav {
+    background: #4A90A4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.nav-brand {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.3;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #F4E4A6;
+}
+
+.btn-sistema {
+    background: #F4E4A6;
+    color: #2c3E50;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-sistema:hover {
+    background: #e8d890;
+}
+
+/*estilo dentro del main*/
+main img{
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+    text-align: center
+}
+
+a{
+    text-decoration: none;
+}
+
+@media (max-width: 768px){
+
+    .burger {
+    display: block; /* aparece el ícono hamburguesa */
+  }
+
+  .nav-menu {
+    position: fixed;
+    flex-direction: column;
+    background-color: #333;
+    top: 100px;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(-100%); /* oculto fuera de pantalla */
+    transition: transform 0.3s ease-in-out;
+    padding-top: 2rem;
+  }
+
+  .nav-menu li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  /* cuando el checkbox está marcado */
+  .menu:checked ~ .nav-menu {
+    transform: translateX(0); /* se desliza dentro */
+  }
+
+  /*principal*/
+
+  main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    margin-top: 15%;
+  }
+
+    main img{
+        width: 150px;
+        height: 150px;
+        margin-top: 20%;
+    }
+
+    button{
+        width: 70%;
+        font-size: 1.2rem;
+        margin-top: 5%;
+    }
+}

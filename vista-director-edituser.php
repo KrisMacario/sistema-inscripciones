@@ -4,172 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar usuario</title>
+    <link href="css/GlobalStyle.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/vista-director-edituser.css">
 </head>
 <body>
 
-    <style>
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f7f1c9ff;
-            text-align: center;
-        }
-
-        main{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 20px;
-        }
-
-        main form{
-            text-align: center;
-            background: rgb(252, 251, 245);
-            width: 50%;
-            height: 100%;
-            padding: 60px;
-            border-radius: 20px;
-        }
-
-        /* Inscripción Section */
-
-
-    .form-container {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-      
-    }
-
-    .form-group label {
-      display: block;
-      color: #4b5563;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: #4A90A4;
-      box-shadow: 0 0 0 3px rgba(74, 144, 164, 0.1);
-    }
-
-        .grupo label{
-      display: block;
-      text-align: center;
-      color: #4b5563;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    /*boton d salir*/
-    #cerrar{
-        margin-right: 100%;
-    }
-
-    #cerrar button{
-        font-size: 20px;
-        padding: 5px 15px;
-        border: none;
-        border-radius: 100%;
-        background-color: #ff4d4d;
-        color: white;
-        cursor: pointer;
-    }
-
-    .foto-preview {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    .foto-preview img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 2px solid #ccc;
-      margin-top: 3%;
-    }
-
-    #fotop{
-      display: block;
-      text-align: center;
-      color: #4b5563;
-      font-weight: bold;
-    }
-
-    .custom-file-upload {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.upload-label {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #4A90A4;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.upload-label:hover {
-  background-color: #496a74;
-}
-
-input[type="file"] {
-  display: none;
-}
-
-    #agregar-user{
-        background-color: #4A90A4;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-    }
-
-    #agregar-user:hover{
-        background-color: #496a74;
-    }
-
-
-    </style>
+<nav id="inicio">
+  <div class="container">
+    <div class="nav-container">
+      <a href="index.html">  
+      <div class="nav-brand">  
+        ROSALINDA<br>
+        GUERRERO<br>
+        GAMBOA
+      </div>
+      </a>
+      <input type="checkbox" class="menu" id="menu">
+      <label for="menu" class="burger">☰</label>
+      <ul class="nav-menu">
+        <li><a href="vista-director-inicio.php">INICIO</a></li>
+        <li><a href="vista-director-inscripciones.php">INSCRIPCIONES</a></li>
+        <li><a href="pruebaVerUsuarios-director.php">USUARIOS</a></li>
+        <li><a href="sistema_escolar.html">CERRAR SESIÓN</a></li>
+      </ul>
+    </div>
+  </div>
+  </nav>
 
     <div id="cerrar">
-            <button onclick="window.location.href='pruebaVerUsuarios-director.php'">X</button>
+            <button onclick="window.location.href='pruebaVerUsuarios-director.php'"><</button>
     </div>
 
     <main>
@@ -226,17 +89,17 @@ input[type="file"] {
 
                         '<div class="form-grid">'.
                             '<div class="form-group">'.
-                                '<label>Teléfono</label>'.
+                                '<label>Teléfono personal</label>'.
                                 '<input type="text" name="telefono_personal" placeholder="'. $row['telefono'].'" maxlength="10">'.
                             '</div>'.
                             '<div class="form-group">'.
-                                '<label>Apellidos</label>'.
+                                '<label>Teléfono fijo</label>'.
                                 '<input type="tel" name="telefono_fijo" placeholder="'. $row['telefonoFijo'].'" maxlength="10">'.
                             '</div>'.
                         '</div>'.
 
                         '<div class="form-group">'.
-                            '<label>Teléfono fijo</label>'.
+                            '<label>E-mail</label>'.
                             '<input type="email" name="email_admin" placeholder="'. $row['email'].'">'.
                         '</div>'.
 
