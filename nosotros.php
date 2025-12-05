@@ -134,6 +134,8 @@
 <div class="nosotros-content">
 <p>La Escuela Primaria Rosalinda Guerrero Gamboa es una institución educativa comprometida con la formación integral de niños y niñas. Nuestro enfoque pedagógico se centra en el desarrollo de valores, habilidades académicas y sociales que preparan a nuestros estudiantes para los retos del futuro.</p>
 <p>Contamos con instalaciones modernas, personal docente calificado y un ambiente seguro que favorece el aprendizaje y el desarrollo personal de cada alumno.</p>
+<p style="font-weight: 700">Contacto del director: director@sistema.escolar.mx <br>
+Teléfono del director: 8493039383</p>
 </div>
 </div>
 </section>
