@@ -88,7 +88,6 @@ if (isset($_POST['buscar']) && !empty(trim($_POST['buscar']))) {
       <!-- Mostrar resultados de búsqueda si existen -->
        <?php
 
-        // 1. Verifica si hay resultados para mostrar Y si el objeto no es nulo
         if ($resultado_a_mostrar && $resultado_a_mostrar->num_rows > 0) {
             
             
@@ -103,7 +102,6 @@ if (isset($_POST['buscar']) && !empty(trim($_POST['buscar']))) {
                 // Mostrar imagen
                 echo '<img src="' . htmlspecialchars($rutaWeb) . '" alt="usuario">';
 
-                // Asegúrate de incluir el apellido que ahora estás seleccionando
                 echo '<h2>' . htmlspecialchars($row["nombre"]) .'</h2>'; 
                 echo '<h3 class="roli">' . htmlspecialchars($row["nombre_rol"]) . '</h3>';
                 
