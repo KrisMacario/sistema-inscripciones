@@ -1,3 +1,33 @@
+body{
+    background-color: #F4E4A6;
+}
+
+/*buscador*/
+form {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#buscar{
+  padding: 10px;
+  width: 500px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  font-size: 1rem;
+}
+
+#buscar-btn{
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #4A90A4;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 main{
     display: flex;
     flex-wrap: wrap;
@@ -45,13 +75,24 @@ a{
     color: #4d4c4cff;
 }
 
-.cont-user{
-    margin: 20px;
-    border: none;
-    padding: 15px 20px;
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+.cont-user {
+    margin: 20px auto; 
+    width: 95%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+#tabla {
+    width: 100%; 
+    table-layout: fixed; 
+    border-collapse: collapse;
+}
+
+.cont-user table th, .cont-user table td {
+    text-align: center; 
+    padding: 10px;
 }
 
 table{
@@ -152,6 +193,11 @@ cursor: auto;
   /* cuando el checkbox está marcado */
   .menu:checked ~ .nav-menu {
     transform: translateX(0); /* se desliza dentro */
+  }
+
+  /*buscador responsivo*/
+  #buscar{
+    width: 70%;
   }
 
   .container h2{

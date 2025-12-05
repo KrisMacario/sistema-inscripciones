@@ -1,3 +1,33 @@
+<!-- PHP para manejar la búsqueda -->
+<?php
+$buscar = "";
+$resultado_a_mostrar = null;
+
+$conexion = new mysqli("localhost", "root", "", "sistema_inc");
+if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+
+if (isset($_POST['buscar']) && !empty(trim($_POST['buscar']))) {
+    $buscar = trim($_POST['buscar']);
+
+    $sql_buscar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.estado, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE (usuarios.nombre LIKE ? OR usuarios.apellido LIKE ?) AND rol.pk_rol = 6";
+    
+    $stmt = $conexion->prepare($sql_buscar);
+    $like_buscar = "%" . $buscar . "%";
+    $stmt->bind_param("ss", $like_buscar, $like_buscar);
+    $stmt->execute();
+    
+    $resultado_a_mostrar = $stmt->get_result(); 
+    $stmt->close();
+
+} else {
+    $sql_todos = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.estado, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 6";
+    $resultado_a_mostrar = $conexion->query($sql_todos);
+    
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,122 +36,10 @@
   <title>Escuela Primaria Rosalinda Guerrero Gamboa</title>
   <meta name="description" content="Escuela Primaria Rosalinda Guerrero Gamboa - Educación de calidad para niños">
   <link href="css/GlobalStyle.css" rel="stylesheet"/>
+  <link href="css/vista-admin-inscripciones.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-<style>
-
-
-        main{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 20px;
-        }
-
-        #add{
-            margin-top: 10px;
-            text-align: center;
-            display: block;
-            font-size: 1.7rem;
-        }
-
-        #plus{
-            width: 180px;
-            height: 180px;
-            margin-top: 70px;
-        }
-
-        h1{
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        h2, h3{
-            text-align: center;
-        }
-
-        h3{
-            margin-top: -25px;
-        }
-
-        img{
-            object-fit: cover;
-            width: 300px;
-            height: 300px;
-            border-radius: 45%;
-        }
-
-        a{
-            text-decoration: none;
-            color: #4d4c4cff;
-        }
-
-        .cont-user{
-            margin: 20px;
-            border: none;
-            padding: 15px 20px;
-            background-color: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        table{
-            border-collapse: separate;
-            border-spacing: 10px 25px;
-            margin: 20px;
-        }
-
-        th{
-          font-size: 1.5rem;
-        }
-
-        td{
-          font-size: 1.2rem;
-        }
-
-        tbody tr{
-          text-align: center
-        }
-        
-        td button{
-          padding: 15px;
-          font-size: 1rem;
-          cursor: pointer;
-          background: #A2BFF5;
-          border: none;
-          border-radius: 25px;
-          color: #2e2e2eff;
-          margin-left: 5px;
-        }
-
-        .estado-gris{
-          background: #cfe0ffff;
-          font-weight: bold;
-          padding: 15px;
-          border-radius: 25px;
-          cursor: auto;
-        }
-
-        .estado-verde{
-          background-color: #A2F5A2;
-          font-weight: bold;
-          padding: 15px;
-          border-radius: 25px;
-          cursor: auto;
-        }
-
-        .estado-rechazado{
-          background-color: #F5A2A2;
-          font-weight: bold;
-          padding: 15px;
-          border-radius: 25px;
-          cursor: auto;
-        }
-
-    </style>
 
 
   <!-- Navegación -->
@@ -135,6 +53,8 @@
           GAMBOA
         </div>
         </a>
+        <input type="checkbox" class="menu" id="menu">
+        <label for="menu" class="burger">☰</label>
         <ul class="nav-menu">
           <li><a href="vista-admin-inicio.php">INICIO</a></li>
           <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
@@ -149,6 +69,12 @@
   <section id="sistema-escolar" class="sistema-escolar">
     <div class="container">
       <h2>Alumnos de nuevo ingreso</h2>
+
+       <!--buscar alumno-->
+      <form action="" method="POST">
+      <input type="search" name="buscar" id="buscar" placeholder="Buscar usuario..." value="<?php echo htmlspecialchars($buscar); ?>">
+      <button type="submit" id="buscar-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
 
       <!-- aqui empieza la tabla y el php -->
       <div class="cont-user"> 
@@ -170,36 +96,45 @@
         </thead>
 
         <?php
-          $conexion = new mysqli("localhost", "root", "", "sistema_inc");
-          if ($conexion->connect_error) {
-              die("Error de conexión: " . $conexion->connect_error);
-          }
-          $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.estado, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 6";
-          $resultado = $conexion->query($sql_verificar);
-          //la condicion while es para recorrer todas las filas del resultado y mostrarlas
-          while ($row = $resultado->fetch_assoc()){ //mientras haya filas en el resultado, el fetch_assoc las va obteniendo una por una
-              echo "<tbody>";
-              echo "<tr>";
-              echo "<td>". $row["nombre"] . "</td>";
-              echo "<td>". $row["apellido"] . "</td>";
-              $estado = strtolower($row["estado"]);
-              $clase_estado = "";
-
-                if ($estado === "aceptado") {
-                    $clase_estado = "estado-verde";
-                } elseif ($estado === "rechazado") {
-                    $clase_estado = "estado-rechazado";
-                } else {
-                    $clase_estado = "estado-gris";
-                }
-                echo "<td><button class='estado " . $clase_estado . "'>". $row["estado"] . "</button></td>";
                 
-              echo '<td><button onclick="window.location.href=\'inscripcion-alumno.php?pk_usuario='. htmlspecialchars($row['pk_usuario']) . '\'"> Ver inscripcion </button></td>';
-              echo "</tr>";
-              echo "</tbody>";
-          }
-      ?>
+          if ($resultado_a_mostrar && $resultado_a_mostrar->num_rows > 0) {
+              
+              // Bucle que usa la variable que contiene los resultados (búsqueda O todos)
+              while ($row = $resultado_a_mostrar->fetch_assoc()){ 
+                  echo "<tbody>";
+                  echo "<tr>";
+                  echo "<td>". $row["nombre"] . "</td>";
+                  echo "<td>". $row["apellido"] . "</td>";
+                  
+                  // Lógica para determinar la clase del estado (Estado está incluido en $row)
+                  $estado = strtolower($row["estado"]);
+                  $clase_estado = "";
 
+                  if ($estado === "aceptado") {
+                      $clase_estado = "estado-verde";
+                  } elseif ($estado === "rechazado") {
+                      $clase_estado = "estado-rechazado";
+                  } else {
+                      $clase_estado = "estado-gris";
+                  }
+                  
+                  echo "<td><button class='estado " . $clase_estado . "'>". htmlspecialchars($row["estado"]) . "</button></td>";
+                  
+                  echo '<td><button class="insc" onclick="window.location.href=\'inscripcion-alumno.php?pk_usuario='. htmlspecialchars($row['pk_usuario']) . '\'"> Ver inscripcion </button></td>';
+                  echo "</tr>";
+                  echo "</tbody>";
+              }
+          } else {
+              // Si no hay resultados para mostrar
+              echo "<tbody><tr><td colspan='4' style='text-align: center;'>No se encontraron alumnos";
+              if (!empty($buscar)) {
+                  echo " para el término **" . htmlspecialchars($buscar) . "**.";
+              }
+              echo "</td></tr></tbody>";
+          }
+          // Cierre de la conexión
+          $conexion->close();
+          ?>
       </table>
 
       </div>

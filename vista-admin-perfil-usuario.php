@@ -5,112 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuario</title>
     <link href="css/GlobalStyle.css" rel="stylesheet"/>
+    <link href="css/vista-admin-perfil-usuario.css" rel="stylesheet"/>
 </head>
 <body>
 
-    <style>
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f7f1c9ff;
-        }
-
-        main{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 20px;
-        }
-
-        h1{
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        h3{
-            text-align: left;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-
-        .container-perfil{
-            text-align: center;
-            background: #f5f5f5ff;
-            width: 700px;
-            height: 600px;
-            margin: 80px 50px;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        img{
-            object-fit: cover;
-            width: 250px;
-            height: 250px;
-            border-radius: 100%;
-            margin-left: 20px;
-        }
-
-        #subgroup{
-            display: flex;
-            flex-direction: row;
-        }
-
-        #NyE{
-            margin-left: 60px;
-        }
-
-        .name{
-            font-size: 2rem;
-            margin-top: 50px;
-        }
-
-        #edit-user{
-            border: none;
-            padding: 15px;
-            background: #d7dee6ff;
-            border-radius: 15px;
-            cursor: pointer;
-            margin-top: 30px;
-            font-size: 1rem;
-        }
-
-        #otroGrupo{
-            margin-top: 45px;
-            margin-left: 30px;
-        }
-
-        hr{
-            margin: 30px;
-        }
-
-        #btn-salir{
-            position: fixed;
-            margin: 0px 10px;
-        }
-
-        #btn-salir button{
-            font-size: 20px;
-            padding: 5px 15px;
-            border: none;
-            border-radius: 60%;
-            background-color: #ff4d4d;
-            color: white;
-            cursor: pointer;
-        }
-
-        .name{
-            margin-top: 35%;
-        }
-    </style>
+<nav id="inicio">
+    <div class="container">
+      <div class="nav-container">
+        <a href="index.html">  
+        <div class="nav-brand">  
+          ROSALINDA<br>
+          GUERRERO<br>
+          GAMBOA
+        </div>
+        </a>
+        <input type="checkbox" class="menu" id="menu">
+        <label for="menu" class="burger">☰</label>
+        <ul class="nav-menu">
+          <li><a href="vista-admin-inicio.php">INICIO</a></li>
+          <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
+          <li><a href="pruebaVerUsuarios.php">USUARIOS</a></li>
+          <li><a href="sistema_escolar.html">CERRAR SESIÓN</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
     <!-- Botón de salir -->
     <div id="btn-salir">
-        <button onclick="window.location.href='pruebaVerUsuarios.php'">X</button>
+        <button onclick="window.location.href='pruebaVerUsuarios.php'"><</button>
     </div>
     
 

@@ -6,163 +6,9 @@
   <title>Escuela Primaria Rosalinda Guerrero Gamboa</title>
   <meta name="description" content="Escuela Primaria Rosalinda Guerrero Gamboa - Educación de calidad para niños">
   <link href="css/GlobalStyle.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/vista-admin-inicio.css">
 </head>
 <body>
-
-<!-- Agregar estilos específicos para esta página -->
-<style>
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: #F4E4A6 !important;
-  }
-
-  a{
-    text-decoration: none;
-  }
-
-  .anuncios-grid {
-    text-align: center;
-  }
-
-  /*estilos para la tarjeta de cupos */
-  .cupos {
-    margin: 20px;
-    font-size: 1.2rem;
-    width: 40%;
-    height: auto;
-    text-align: center;
-    margin-left: 10%;
-  }
-
-  .cupos h3 {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-  }
-
-  .cupos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.tarjeta-cupo {
-  background-color: #f5f5f5;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
-  width: 200px;
-  text-align: center;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-}
-
-.tarjeta-cupo:hover {
-  transform: scale(1.05);
-}
-
-.tarjeta-cupo h4 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.tarjeta-cupo p {
-  margin: 5px 0;
-  font-size: 1rem;
-}
-
-/*total inscritos*/
-.total {
-    font-size: 1.2rem;
-    width: 110%;
-    height: auto;
-    text-align: center;
-    margin-right: 10%;
-    float: right;
-    background: #f5f5f5;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-    margin-top: 6%;
-  transition: transform 0.2s ease;
-  }
-
-  .total:hover {
-  transform: scale(1.05);
-}
-
-  .total h3 {
-    font-size: 1.5rem;
-    color: #4A90A4;
-  }
-
-  .divisor {
-    display: flex;
-    
-    align-items: flex-start;
-  }
-
-  .aprove {
-    font-size: 1.2rem;
-    width: 110%;
-    height: auto;
-    text-align: center;
-    margin-right: 10%;
-    float: right;
-    background: #f5f5f5;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-    margin-top: 8%;
-  transition: transform 0.2s ease;
-  }
-
-  .aprove:hover {
-  transform: scale(1.05);
-}
-
-.aprove h3 {
-    font-size: 1.5rem;
-    color: #5caa83ff;
-  }
-
-  .rejected {
-    font-size: 1.2rem;
-    width: 110%;
-    height: auto;
-    text-align: center;
-    margin-right: 10%;
-    float: right;
-    background: #f5f5f5;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-    margin-top: 8%;
-    transition: transform 0.2s ease;
-  }
-
-  .rejected:hover {
-  transform: scale(1.05);
-}
-
-.rejected h3 {
-    font-size: 1.5rem;
-    color: #d9534fff;
-  }
-
-  .dip{
-    display: flex;
-    flex-direction: column;
-    margin-left: 15%;
-  }
-
-
-</style>
 
   <!-- Navegación -->
   <nav id="inicio">
@@ -175,6 +21,8 @@
           GAMBOA
         </div>
         </a>
+        <input type="checkbox" class="menu" id="menu">
+        <label for="menu" class="burger">☰</label>
         <ul class="nav-menu">
           <li><a href="vista-admin-inicio.php">INICIO</a></li>
           <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>

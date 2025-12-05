@@ -1,0 +1,243 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f7f1c9ff;
+    text-align: center;
+}
+
+/*menu de navegacion*/
+.menu {
+  display: none; /* ocultamos el checkbox */
+}
+
+.burger {
+  display: none;
+  font-size: 2.3rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Estilos normales del menú en escritorio */
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+/*contenido principal*/
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+main form{
+    text-align: center;
+    background: rgb(252, 251, 245);
+    width: 50%;
+    height: 100%;
+    padding: 60px;
+    border-radius: 20px;
+}
+
+/*boton d salir*/
+.cerrar{
+    position: fixed;
+    top: 15%;
+    left: 20px;
+    background-color: #4A90A4;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    font-weight: 800;
+}
+
+
+/* Inscripción Section */
+
+
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    
+}
+
+.form-group label {
+    display: block;
+    color: #4b5563;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #4A90A4;
+    box-shadow: 0 0 0 3px rgba(74, 144, 164, 0.1);
+}
+
+    .grupo label{
+    display: block;
+    text-align: center;
+    color: #4b5563;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+
+
+.foto-preview {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.foto-preview img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin-top: 3%;
+}
+
+#fotop{
+    display: block;
+    text-align: center;
+    color: #4b5563;
+    font-weight: bold;
+}
+
+.custom-file-upload {
+text-align: center;
+margin-bottom: 15px;
+}
+
+.upload-label {
+display: inline-block;
+padding: 10px 20px;
+background-color: #4A90A4;
+color: #fff;
+border-radius: 5px;
+cursor: pointer;
+font-weight: bold;
+transition: background-color 0.3s ease;
+}
+
+.upload-label:hover {
+background-color: #496a74;
+}
+
+input[type="file"] {
+display: none;
+}
+
+#agregar-user{
+    background-color: #4A90A4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#agregar-user:hover{
+    background-color: #496a74;
+}
+
+.error-msg {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+@media (max-width: 768px) {
+
+    /*menu de navegacion responsivo*/
+    .burger {
+    display: block; /* aparece el ícono hamburguesa */
+  }
+
+  .nav-menu {
+    position: fixed;
+    flex-direction: column;
+    background-color: #333;
+    top: 100px;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(-100%); /* oculto fuera de pantalla */
+    transition: transform 0.3s ease-in-out;
+    padding-top: 2rem;
+  }
+
+  .nav-menu li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  /* cuando el checkbox está marcado */
+  .menu:checked ~ .nav-menu {
+    transform: translateX(0); /* se desliza dentro */
+  }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+        gap: .6rem;
+    }
+
+    main form{
+        width: 100%;
+        padding: 20px;
+    }
+
+    main h1{
+        font-size: 1.4rem;
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+
+    #agregar-user{
+        margin-top: 10%;
+        margin-bottom: 5%;
+    }
+
+}

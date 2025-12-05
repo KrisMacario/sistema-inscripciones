@@ -1,0 +1,248 @@
+body{
+    background: #F4E4A6;
+}
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+/*menu hamburguesa*/
+.menu {
+  display: none; /* ocultamos el checkbox */
+}
+
+.burger {
+  display: none;
+  font-size: 2.3rem;
+  cursor: pointer;
+  color: white;
+}
+
+/*estilo del buscador*/
+
+form {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#buscar{
+  padding: 10px;
+  width: 500px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  font-size: 1rem;
+}
+
+#buscar-btn{
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #4A90A4;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Estilos normales del menú en escritorio */
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+#add{
+    margin-top: 10px;
+    text-align: center;
+    display: block;
+    font-size: 1.7rem;
+}
+
+#plus{
+    width: 180px;
+    height: 180px;
+    margin-top: 70px;
+}
+
+h1{
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2, h3{
+    text-align: center;
+}
+
+h3{
+    margin-top: -25px;
+}
+
+img{
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+    border-radius: 45%;
+}
+
+a{
+    text-decoration: none;
+    color: #4d4c4cff;
+}
+
+.cont-user{
+    margin: 20px;
+    border: none;
+    padding: 15px 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+}
+
+table{
+    border-collapse: separate;
+    border-spacing: 10px 25px;
+    margin: 20px;
+}
+
+th{
+    font-size: 1.5rem;
+}
+
+td{
+    font-size: 1.2rem;
+}
+
+tbody tr{
+    text-align: center
+}
+
+td button{
+    padding: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #A2BFF5;
+    border: none;
+    border-radius: 25px;
+    color: #2e2e2eff;
+    margin-left: 5px;
+}
+
+.estado-gris{
+    background: #cfe0ffff;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 25px;
+    cursor: auto;
+}
+
+.estado-verde{
+    background-color: #A2F5A2;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 25px;
+    cursor: auto;
+}
+
+.estado-rechazado{
+    background-color: #F5A2A2;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 25px;
+    cursor: auto;
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: block; /* aparece el ícono hamburguesa */
+  }
+
+  .nav-menu {
+    position: fixed;
+    flex-direction: column;
+    background-color: #333;
+    top: 100px;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(-100%); /* oculto fuera de pantalla */
+    transition: transform 0.3s ease-in-out;
+    padding-top: 2rem;
+  }
+
+  .nav-menu li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  /* cuando el checkbox está marcado */
+  .menu:checked ~ .nav-menu {
+    transform: translateX(0); /* se desliza dentro */
+  }
+
+  /*buscador responsivo*/
+  #buscar{
+    width: 70%;
+  }
+
+  /*tabla responsiva*/
+
+  .container h2{
+    font-size: 1.4rem;
+  }
+
+  .cont-user {
+    padding: 0; 
+    overflow-x: auto; /*scroll en posicion x*/
+    -webkit-overflow-scrolling: touch; 
+    width: 100%;
+    margin-left: 0;
+  }
+
+  table {
+    border-collapse: collapse; 
+    border-spacing: 0;
+    width: 100%;
+    margin: 0;
+    padding: 50px;
+    min-width: 700px; 
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  th {
+    font-size: 1.1rem; 
+    padding: 10px 5px; 
+  }
+
+  td {
+    font-size: 1rem; 
+    padding: 10px 5px;
+  }
+  
+  td button {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    border-radius: 15px;
+    margin-left: 0;
+  }
+
+  .insc {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+    width: 115px;
+    border-radius: 25px;
+  }
+
+  .estado-gris, .estado-verde, .estado-rechazado {
+    padding: 15px 10px; 
+    font-size: 0.85rem;
+    line-height: 1; 
+  }
+}

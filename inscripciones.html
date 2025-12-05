@@ -46,6 +46,14 @@
       cursor: pointer;
       color: white;
     }
+
+    /*estilo del span del nombre del archivo*/
+    #file-certificado, #file-curp, #file-cartilla, #file-acta {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #808080;
+    }
   
   /*modo responsive para el menu de hamburguesa*/
     @media (max-width: 768px) {
@@ -85,6 +93,32 @@
 
       .btn-sistema:hover {
         background: none;
+      }
+
+      .grupo {
+        display: flex;
+        flex-direction: column !important; /* Forzamos la columna y anulamos cualquier conflicto */
+        width: 100%;
+        gap: 20px;
+      }
+
+      .subgrupo1 {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important; 
+        justify-content: center; 
+        align-items: center;
+      }
+
+      .gru{
+        width: 90% !important; /* Forzamos el ancho del cuadro a 90% de la pantalla */
+        margin: 10px auto; 
+      }
+      
+      .gru label{
+        width: 100% !important; 
+        height: 200px !important; 
+        padding: 20px 10px !important; 
       }
     }
 
@@ -202,13 +236,17 @@
             <div class="subgrupo1">
               <div class="gru">
                 <input type="file" name="certificado_file" id="upload-certificado" >
-                <label for="upload-certificado">Certificado de preescolar</label>
+                <label for="upload-certificado">Certificado de preescolar
+                  <span id="file-certificado"></span>
+                </label>
                 <span id="upload-certificado-error"></span>
               </div>
 
               <div class="gru">
                 <input type="file" name="curp_file" id="upload-curp" >
-                <label for="upload-curp">CURP</label>
+                <label for="upload-curp">CURP
+                  <span id="file-curp"></span>
+                </label>
                 <span id="upload-curp-error"></span>
               </div>
             </div>
@@ -216,13 +254,17 @@
             <div class="subgrupo1">
               <div class="gru">
                 <input type="file" name="cartilla_file" id="upload-cartilla" >
-                <label for="upload-cartilla">Cartilla Nacional de vacunación</label>
+                <label for="upload-cartilla">Cartilla Nacional de vacunación
+                  <span id="file-cartilla"></span>
+                </label>
                 <span id="upload-cartilla-error"></span>
               </div>
 
               <div class="gru">
                 <input type="file" name="acta_file" id="upload-acta" >
-                <label for="upload-acta">Acta de nacimiento</label>
+                <label for="upload-acta">Acta de nacimiento
+                  <span id="file-acta"></span> <!--para mostrar el nombre del archivo-->
+                </label>
                 <span id="upload-acta-error"></span>
             </div>
           </div>
@@ -306,11 +348,31 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  function mostrarNombreArchivo(idCampo, idSpan) {
+    const campo = document.getElementById(idCampo);
+    const spanNombre = document.getElementById(idSpan);
+
+    campo.addEventListener("change", function() {
+      const archivo = campo.files[0];
+      if (archivo) {
+        spanNombre.textContent = archivo.name;
+      } else {
+        spanNombre.textContent = "No hay";
+      }
+    });
+  }
+
   // llamadas de archivos
   validarArchivo("upload-certificado", "Debe ser un certificado válido.");
   validarArchivo("upload-curp", "Debe ser un CURP válido.");
   validarArchivo("upload-cartilla", "Debe ser una cartilla válida.");
   validarArchivo("upload-acta", "Debe ser un acta válida.");
+
+  //mostrar nombre del archivo
+  mostrarNombreArchivo("upload-certificado", "file-certificado");
+  mostrarNombreArchivo("upload-curp", "file-curp");
+  mostrarNombreArchivo("upload-cartilla", "file-cartilla");
+  mostrarNombreArchivo("upload-acta", "file-acta");
 
   // validación al enviar
   document.querySelector("form").addEventListener("submit", function (e) {
@@ -329,11 +391,11 @@ document.addEventListener("DOMContentLoaded", function() {
       const archivo = campo.files[0];
 
       if (!archivo) {
-        errorSpan.textContent = `⚠️ Debe subir el archivo`;
+        errorSpan.textContent = `Debe subir el archivo`;
         campo.classList.add("invalid");
         hayError = true;
       } else if (archivo.type !== "application/pdf") {
-        errorSpan.textContent = `⚠️ Debe estar en formato PDF.`;
+        errorSpan.textContent = `Debe estar en formato PDF.`;
         campo.classList.add("invalid");
         hayError = true;
       } else {
@@ -355,10 +417,10 @@ document.addEventListener("DOMContentLoaded", function() {
   campo.addEventListener("input", function() {
     const valor = campo.value.trim();
     if (!/^\d*$/.test(valor)) {
-      errorSpan.textContent = "⚠️ Solo se permiten números. " + mensaje;
+      errorSpan.textContent = "Solo se permiten números. " + mensaje;
       campo.classList.add("invalid");
     } else if (valor.length > campo.maxLength) {
-      errorSpan.textContent = "⚠️ Máximo " + campo.maxLength + " dígitos.";
+      errorSpan.textContent = "Máximo " + campo.maxLength + " dígitos.";
       campo.classList.add("invalid");
     } else {
       errorSpan.textContent = "";
@@ -381,7 +443,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const esValido = dominiosValidos.some(d => valor.endsWith(d));
 
     if (!esValido) {
-      errorSpan.textContent = "⚠️ Solo se permiten correos Gmail, Hotmail u Outlook.";
+      errorSpan.textContent = "Solo se permiten correos Gmail, Hotmail u Outlook.";
       campo.classList.add("invalid");
     } else {
       errorSpan.textContent = "";

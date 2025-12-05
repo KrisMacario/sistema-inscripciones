@@ -5,73 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscripción completada</title>
     <link href="css/GlobalStyle.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/inscripciones.css"/>
 
 </head>
 <body>
 
-    <style>
-
-        body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        background: #f7f1c9ff;
-        text-align: center;
-        }
-
-        main{
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            justify-content: center;
-        }
-
-        main img{
-            width: 15%;
-            height: 15%;
-            margin-left: 43%;
-            margin-top: 5%;
-        }
-
-        #subtitle{
-            margin-top: 1%;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        #paragraph{
-          margin-top: 1%;
-          font-size: 1.5rem;
-        }
-
-        #regresar_btn{
-            margin-top: 2%;
-            background-color: #4A90A4;
-            padding: 10px;
-            width: 10%;
-            text-align: center;
-            margin-left: 45%;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.5rem;
-            border-radius: 20px;
-        }
-
-    </style>
-
-      <!-- Navegación -->
+<!-- Navegación -->
   <nav id="inicio">
     <div class="container">
       <div class="nav-container">
-        <div class="nav-brand">
+        <a href="index.html">  
+        <div class="nav-brand">  
           ROSALINDA<br>
           GUERRERO<br>
           GAMBOA
         </div>
+        </a>
+        <input type="checkbox" class="menu" id="menu">
+        <label for="menu" class="burger">☰</label>
         <ul class="nav-menu">
           <li><a href="index.html">INICIO</a></li>
           <li><a href="nosotros.php">NOSOTROS</a></li>
-          <li><a href="acerca-del-equipo.html">ACERCA DEL EQUIPO</a></li>
           <li><a href="inscripciones.html">INSCRIPCIÓN</a></li>
           <li><a href="sistema_escolar.html" class="btn-sistema">SISTEMA ESCOLAR</a></li>
         </ul>

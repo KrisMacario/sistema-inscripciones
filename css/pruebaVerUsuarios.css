@@ -1,82 +1,9 @@
-body{
-  background: #F4E4A6;
-}
-
-
 #sistema-escolar .container {
-margin: 0 auto;
-max-width: 1200px;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
-
-/*modal eliminar usuario*/
-.modal {
-    display: none;
-    position: fixed; 
-    z-index: 9999; 
-    left: 0; 
-    top: 0; 
-    width: 100%; 
-    height: 100%; 
-    background-color: rgba(0,0,0,0.4);
-    align-items: center; 
-    justify-content: center;
-}
-
-.modal.show {
-    display: flex; 
-}
-
-
-.modal-content {
-    background-color: #fefefe; 
-    padding: 20px; 
-    border: 1px solid #888; 
-    width: 80%;
-    max-width: 400px; 
-    text-align: center; 
-    border-radius: 8px;
-}
-
-.close {
-    color: #aaa; 
-    float: right; 
-    font-size: 28px; 
-    font-weight: bold; 
-    cursor: pointer;
-}
-
-#modal-text {
-    margin-bottom: 20px; 
-}
-
-#btn-confirmar{
-    padding: 10px 20px; 
-    margin: 0 10px; 
-    border: none; 
-    border-radius: 25px; 
-    cursor: pointer;
-    color: #fefefe;
-    background: #ce6868ff;
-}
-
-#btn-cancelar{
-    padding: 10px 20px; 
-    margin: 0 10px; 
-    border: none; 
-    border-radius: 25px; 
-    cursor: pointer;
-    color: #fefefe;
-    background: #94a5e7ff;
-}
-
-.modal-buttons button {
-    margin: 5px; 
-    padding: 10px 15px; 
-    cursor: pointer;
-}
-
-/*estilos del menu*/
+/*estilos de la navegacion*/
 .menu {
   display: none; /* ocultamos el checkbox */
 }
@@ -124,11 +51,11 @@ form {
 
 /* Estilos del contenedor principal */
 main {
-display: grid;
-gap: 50px;
-margin: -15px -40px; /* Centrar y margen superior/inferior */
-grid-template-columns: repeat(3, 1fr);
-
+    display: grid;
+    gap: 50px;
+    margin: 30px -40px; /* Centrar y margen superior/inferior */
+    grid-template-columns: repeat(3, 1fr);
+    
 }
 
 .container {
@@ -138,119 +65,115 @@ padding: 0 1rem;
 }
 
 h3{
-margin-top: -20px;
-color: black;
+    margin-top: -20px;
+    color: black;
 
 }
 
 #sistema-escolar .container h1 {
-text-align: center;
-margin-top: 0px;
-
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2.5rem;
+    
 }
 
 /* Estilos de la tarjeta de usuario */
 .card-container-user {
-text-align: center;
-background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
-max-width: 450px;
-height: 570px;
-padding: 30px;
-border-radius: 15px;
-box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-margin: 50px 0;
+    text-align: center;
+    background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
+    max-width: 450px;
+    height: 570px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+    margin: 50px 0;
 }
 
 /* Estilos para la imagen de perfil */
 img {
-object-fit: cover;
-width: 300px;
-height: 300px;
-border-radius: 45%;
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+    border-radius: 45%;
 }
 
 /* Contenedor de botones */
 .group-buttons {
-display: flex;
-flex-direction: row;
-gap: 15px;
-margin-top: 40px;
-justify-content: center;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 40px;
+    justify-content: center;
 }
 
 /* Estilos base de los botones */
 .group-buttons button, .group-buttons a {
-padding: 10px 15px;
-border-radius: 20px;
-border: none;
-font-size: 16px;
-cursor: pointer;
-text-decoration: none; /* Quitar subrayado a los enlaces */
-color: white; /* Color de texto blanco por defecto */
-display: inline-block; /* Permitir padding y width/height en 'a' */
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none; /* Quitar subrayado a los enlaces */
+    color: white; /* Color de texto blanco por defecto */
+    display: inline-block; /* Permitir padding y width/height en 'a' */
 }
 
 .card-add-user {
-text-align: center;
-background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
-max-width: 100%;
-height: 570px;
-padding: 30px;
-border-radius: 15px;
-box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-margin: 50px 0;
+    text-align: center;
+    background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
+    max-width: 450px;
+    height: 570px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+    margin: 50px 0;
 
 }
 
 #link-add-user {
-text-align: center;
-background: rgba(147, 185, 211, 0.2); /* Fondo claro para la tarjeta, */
-max-width: 450px;
-height: 570px;
-padding: 30px;
-border-radius: 15px;
-box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-margin: 50px 0;
-text-decoration: none;
-color: #4A90A4;
-border: 3px dashed #4A90A4;
-margin-bottom: 5%;
+    text-align: center;
+    background: rgba(245, 245, 245, 0.2); /* Fondo claro para la tarjeta, */
+    max-width: 450px;
+    height: 570px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+    margin: 50px 0;
+    text-decoration: none;
+    color: black;
+
 }
 
 .kk{
-font-size: 1.5rem;
-color: #2b6575;
+    font-size: 1.5rem
 }
 
 #plus {
-  font-size: 10rem;
-margin-top: 70px;
-margin-bottom: auto;
-color: #2b6575;
+    margin-top: 70px;
 }
 
 /* Estilo para el botón de eliminar (rojo) */
 #eliminar {
-background-color: #ce6868ff;
+    background-color: #ce6868ff;
 }
 
 /* Estilo para el botón de editar (azul) */
 #editar {
-background-color: #94a5e7ff;
+    background-color: #94a5e7ff;
 }
 
 /* Estilo para el botón de consultar (verde) */
 #consultar {
-background-color: #77cfa3ff;
+    background-color: #77cfa3ff;
 }
 
 a{
-text-decoration: none;
+    text-decoration: none;
 }
 
-/*modo tablet*/
+/*estilos para modo tablet*/
 @media (max-width: 1024px) {
-  main{
+   main{
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     gap: 10px;
@@ -280,10 +203,7 @@ text-decoration: none;
     font-size: 8rem;
     margin-top: 60px;
   }
-
 }
-
-
 
 /*modo movil*/
 @media (max-width: 768px){

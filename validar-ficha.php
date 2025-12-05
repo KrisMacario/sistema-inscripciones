@@ -4,111 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha validada</title>
+    <link rel="stylesheet" href="css/GlobalStyle.css"/>
+    <link rel="stylesheet" href="css/validar-ficha.css"/>
 </head>
 <body>
 
-<style>
-
-    body{
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        background: #f7f1c9ff;
-        margin: auto;
-    }
-
-    main{
-        margin: 20px;
-    }
-
-    /*estilo de la barra de navegación*/
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    nav {
-      background: #4A90A4;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .nav-brand {
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.25rem;
-      line-height: 1.3;
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      list-style: none;
-    }
-
-    .nav-menu a {
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .nav-menu a:hover {
-      color: #F4E4A6;
-    }
-
-    .btn-sistema {
-      background: #F4E4A6;
-      color: #2c3E50;
-      padding: 0.5rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .btn-sistema:hover {
-      background: #e8d890;
-    }
-
-    /*estilo dentro del main*/
-    main img{
-        display: block;
-        margin: auto;
-        margin-top: 5%;
-        text-align: center
-    }
-
-    /*boton regresar*/
-    .bak{
-        margin-top: 50px;
-        margin-left: 38%;
-        background-color: #4A90A4;
-        padding: 10px;
-        width: 15%;
-        text-align: center;
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.5rem;
-        border-radius: 20px;
-        border: none;
-        cursor: pointer;
-        justify-content: center;
-        text-decoration: none
-    }
-
-</style>
 
 <!--navegación-->
 <nav id="inicio">
@@ -119,6 +19,8 @@
           GUERRERO<br>
           GAMBOA
         </div>
+        <input type="checkbox" class="menu" id="menu">
+        <label for="menu" class="burger">☰</label>
         <ul class="nav-menu">
           <li><a href="vista-admin-inicio.php">INICIO</a></li>
           <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>

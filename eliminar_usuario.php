@@ -7,8 +7,8 @@ if ($conexion->connect_error) {
 }
 
 // 2. Verificar que el ID del usuario exista y prepararlo
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id_usuario = $_GET['id'];
+if (isset($_GET['pk_usuario']) && is_numeric($_GET['pk_usuario'])) {
+    $id_usuario = $_GET['pk_usuario'];
 
     // 3. Consulta SQL para eliminar el usuario
     $sql_eliminar = "DELETE FROM usuarios WHERE pk_usuario = ?";
@@ -39,6 +39,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 $conexion->close();
 
 // Redirección de vuelta a la lista de usuarios con un mensaje
-header("Location: pruebaverUsuarios.php");
+header("Location: pruebaVerUsuarios-director.php");
 exit();
 ?>

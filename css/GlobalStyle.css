@@ -589,11 +589,11 @@ box-shadow: 0 0 0 3px rgba(74, 144, 164, 0.1);
 
   .grupo label{
 
-display: block;
+display: flex;
+flex-direction: column;
 
 text-align: center;
 
-color: #4b5563;
 
 font-weight: 600;
 
@@ -635,7 +635,9 @@ align-items: center;
 
 .grupo .subgrupo1 label{
 
-background-color: #b7bec7;
+background: rgba(0, 0, 0, 0.1); /*hacerlo fondo con opacidad baja*/
+
+border: 2px dashed #b1b1b1;
 
 color: #3c4147;
 
@@ -643,9 +645,9 @@ cursor: pointer;
 
 padding: 20px;
 
-width: 200px;
+width: 300px;
 
-height: 100px;
+height: 200px;
 
 border-radius: 15px;
 

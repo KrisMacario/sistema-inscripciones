@@ -1,3 +1,44 @@
+<!-- PHP para manejar la búsqueda -->
+<?php
+$resultado_busqueda = null;
+$buscar = "";
+$mostrar_todos = true;
+$resultado_a_mostrar = null; // Inicializamos la variable principal para mostrar resultados
+
+$conexion = new mysqli("localhost", "root", "", "sistema_inc");
+if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+
+if (isset($_POST['buscar']) && !empty(trim($_POST['buscar']))) {
+    $buscar = trim($_POST['buscar']);
+    $mostrar_todos = false;
+
+    // Consulta SQL para buscar usuarios por nombre o apellido
+    $sql_buscar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.foto_perfil, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE (usuarios.nombre LIKE ? OR usuarios.apellido LIKE ?) AND rol.pk_rol = 1";
+    
+    $stmt = $conexion->prepare($sql_buscar);
+    $like_buscar = "%" . $buscar . "%";
+    $stmt->bind_param("ss", $like_buscar, $like_buscar);
+    $stmt->execute();
+    $resultado_busqueda = $stmt->get_result();
+    $stmt->close();
+    
+    // Si se hizo búsqueda, $resultado_a_mostrar es el resultado de la búsqueda
+    $resultado_a_mostrar = $resultado_busqueda;
+
+} else {
+    // Si NO se hizo búsqueda (o se cargó por primera vez), obtenemos TODOS
+    $sql_todos = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.foto_perfil, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 1";
+    $resultado_todos = $conexion->query($sql_todos);
+    
+    // Si no se hizo búsqueda, $resultado_a_mostrar es el resultado de todos
+    $resultado_a_mostrar = $resultado_todos;
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,138 +46,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de usuarios</title>
     <link href="css/GlobalStyle.css" rel="stylesheet">
-    <style>
-
-        #sistema-escolar .container {
-            margin: 0 auto;
-            max-width: 1200px;
-        }
-
-        /* Estilos del contenedor principal */
-        main {
-            display: grid;
-            gap: 50px;
-            margin: 30px -40px; /* Centrar y margen superior/inferior */
-            grid-template-columns: repeat(3, 1fr);
-            
-        }
-
-        .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-        }
-
-        h3{
-            margin-top: -20px;
-            color: black;
-
-        }
-
-        #sistema-escolar .container h1 {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 2.5rem;
-            
-        }
-
-        /* Estilos de la tarjeta de usuario */
-        .card-container-user {
-            text-align: center;
-            background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
-            max-width: 450px;
-            height: 570px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-            margin: 50px 0;
-        }
-
-        /* Estilos para la imagen de perfil */
-        img {
-            object-fit: cover;
-            width: 300px;
-            height: 300px;
-            border-radius: 45%;
-        }
-
-        /* Contenedor de botones */
-        .group-buttons {
-            display: flex;
-            flex-direction: row;
-            gap: 15px;
-            margin-top: 40px;
-            justify-content: center;
-        }
-
-        /* Estilos base de los botones */
-        .group-buttons button, .group-buttons a {
-            padding: 10px 15px;
-            border-radius: 20px;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none; /* Quitar subrayado a los enlaces */
-            color: white; /* Color de texto blanco por defecto */
-            display: inline-block; /* Permitir padding y width/height en 'a' */
-        }
-
-        .card-add-user {
-            text-align: center;
-            background: #f5f5f5ff; /* Fondo claro para la tarjeta, */
-            max-width: 450px;
-            height: 570px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-            margin: 50px 0;
-
-        }
-
-        #link-add-user {
-            text-align: center;
-            background: rgba(245, 245, 245, 0.2); /* Fondo claro para la tarjeta, */
-            max-width: 450px;
-            height: 570px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-            margin: 50px 0;
-            text-decoration: none;
-            color: black;
-
-        }
-
-        .kk{
-            font-size: 1.5rem
-        }
-
-        #plus {
-            margin-top: 70px;
-        }
-
-        /* Estilo para el botón de eliminar (rojo) */
-        #eliminar {
-            background-color: #ce6868ff;
-        }
-
-        /* Estilo para el botón de editar (azul) */
-        #editar {
-            background-color: #94a5e7ff;
-        }
-
-        /* Estilo para el botón de consultar (verde) */
-        #consultar {
-            background-color: #77cfa3ff;
-        }
-
-        a{
-            text-decoration: none;
-        }
-    </style>
+    <link rel="stylesheet" href="css/pruebaVerUsuarios.css">
+    <script src="https://kit.fontawesome.com/13cae7644c.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
 
     <nav id="inicio">
     <div class="container">
@@ -148,6 +61,8 @@
           GAMBOA
         </div>
         </a>
+        <input type="checkbox" class="menu" id="menu">
+        <label for="menu" class="burger">☰</label>
         <ul class="nav-menu">
           <li><a href="vista-admin-inicio.php">INICIO</a></li>
           <li><a href="vista-admin-inscripciones.php">INSCRIPCIONES</a></li>
@@ -161,41 +76,60 @@
     <section id="sistema-escolar" class="sistema-escolar">
         <div class="container">
             <h1>Usuarios</h1>
+
+            <!--el buscador-->
+            <form action="" method="POST">
+            <input type="search" name="buscar" id="buscar" placeholder="Buscar usuario..." value="<?php echo htmlspecialchars($buscar); ?>">
+            <button type="submit" id="buscar-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+
             <main>
-                <?php
-                $conexion = new mysqli("localhost", "root", "", "sistema_inc");
-                if ($conexion->connect_error) {
-                    die("Error de conexión: " . $conexion->connect_error);
-                }
 
-                $sql_verificar = "SELECT usuarios.pk_usuario, usuarios.nombre, usuarios.apellido, usuarios.foto_perfil, rol.nombre_rol FROM usuarios JOIN rol ON usuarios.fk_rol = rol.pk_rol WHERE rol.pk_rol = 1";
-                $resultado = $conexion->query($sql_verificar);
+      <!-- Mostrar resultados de búsqueda si existen -->
+       <?php
 
-                // La condición while es para recorrer todas las filas del resultado y mostrarlas
-               while ($row = $resultado->fetch_assoc()) {
-    echo '<div class="card-container-user">';
+        // 1. Verifica si hay resultados para mostrar Y si el objeto no es nulo
+        if ($resultado_a_mostrar && $resultado_a_mostrar->num_rows > 0) {
+            
+            
+            // La condición while es para recorrer todas las filas del resultado y mostrarlas
+            while ($row = $resultado_a_mostrar->fetch_assoc()) {
+                echo '<div class="card-container-user">';
+                
+                // Verificar si el archivo existe
+                $foto = !empty($row["foto_perfil"]) ? $row["foto_perfil"] : "icon-7797704_640.png";
+                $rutaWeb = "fotos_perfil/" . $foto;
 
+                // Mostrar imagen
+                echo '<img src="' . htmlspecialchars($rutaWeb) . '" alt="usuario">';
 
-    // Verificar si el archivo existe
-    $foto = !empty($row["foto_perfil"]) ? $row["foto_perfil"] : "icon-7797704_640.png";
-    $rutaServidor = __DIR__ . "/fotos_perfil/" . $foto;
-    $rutaWeb = "fotos_perfil/" . $foto;
+                // Asegúrate de incluir el apellido que ahora estás seleccionando
+                echo '<h2>' . htmlspecialchars($row["nombre"]) .'</h2>'; 
+                echo '<h3 class="roli">' . htmlspecialchars($row["nombre_rol"]) . '</h3>';
+                
+                // Bloque de botones
+                echo '<div class="group-buttons">';
+                echo '<a id="consultar" href="vista-admin-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
+                echo '</div>';
+                echo '</div>';
+            }
+            
+        } elseif (!$mostrar_todos) {
+            // Caso: Se buscó, pero no se encontró nada
+            echo '<p style="text-align: center; width: 100%;">No se encontraron usuarios que coincidan con "' . htmlspecialchars($buscar) . '".</p>';
+        } else {
+            // Caso: No se hizo búsqueda y $resultado_a_mostrar no tenía filas (la tabla está vacía)
+            echo '<p style="text-align: center; width: 100%;">No hay usuarios registrados en este momento.</p>';
+        }
+      ?>
 
-    // Mostrar imagen
-    echo '<img src="' . htmlspecialchars($rutaWeb) . '" alt="usuario">';
-
-    echo '<h2>' . htmlspecialchars($row["nombre"]) . '</h2>';
-    echo '<h3>' . htmlspecialchars($row["nombre_rol"]) . '</h3>';
-    echo '<div class="group-buttons">';
-    echo '<a id="consultar" href="vista-admin-perfil-usuario.php?pk_usuario=' . $row["pk_usuario"] . '">Ver Perfil</a>';
-    echo '</div>';
-    echo '</div>';
-}
-
-                ?>
-
-            </main>
-        </div>
+    </main>
+  </div>
     </section>
+
+
+  <?php
+$conexion->close();
+?>
+
 </body>
-</html>

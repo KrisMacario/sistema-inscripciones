@@ -1,0 +1,201 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f7f1c9ff;
+}
+
+/*menu de navegacion*/
+.menu {
+  display: none; /* ocultamos el checkbox */
+}
+
+.burger {
+  display: none;
+  font-size: 2.3rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Estilos normales del menú en escritorio */
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+h1{
+    text-align: center;
+    margin-top: 20px;
+}
+
+h3{
+    text-align: left;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+/*salir boton*/
+#btn-salir button{
+    position: fixed;
+    top: 15%;
+    left: 20px;
+    background-color: #4A90A4;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    font-weight: 800;
+    
+}
+
+/*container del perfil*/
+
+.container-perfil{
+    text-align: center;
+    background: #f5f5f5ff;
+    width: 700px;
+    height: 600px;
+    margin: 80px 50px;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+}
+
+img{
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    margin-left: 20px;
+}
+
+#subgroup{
+    display: flex;
+    flex-direction: row;
+}
+
+#NyE{
+    margin-left: 60px;
+}
+
+.name{
+    font-size: 2rem;
+    margin-top: 50px;
+}
+
+#edit-user{
+    border: none;
+    padding: 15px;
+    background: #d7dee6ff;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 1rem;
+}
+
+#otroGrupo{
+    margin-top: 45px;
+    margin-left: 30px;
+}
+
+hr{
+    margin: 30px;
+}
+
+
+.name{
+    margin-top: 35%;
+}
+
+/*version movil*/
+@media (max-width: 768px) {
+
+    /*menu hamburguesa*/
+    .burger {
+    display: block; /* aparece el ícono hamburguesa */
+  }
+
+  .nav-menu {
+    position: fixed;
+    flex-direction: column;
+    background-color: #333;
+    top: 100px;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(-100%); /* oculto fuera de pantalla */
+    transition: transform 0.3s ease-in-out;
+    padding-top: 2rem;
+  }
+
+  .nav-menu li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  /* cuando el checkbox está marcado */
+  .menu:checked ~ .nav-menu {
+    transform: translateX(0); /* se desliza dentro */
+  }
+
+   main h1{
+        font-size: 1.4rem;
+        margin-bottom: 5%;
+    }
+
+  .container-perfil{
+    width: 100%;
+    height: auto;
+    margin: 20px auto;
+    padding: 15px;
+    margin-top: 5%;
+  }
+
+  img{
+    width: 200px;
+    height: 200px;
+  }
+
+  #subgroup{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #NyE{
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .name{
+    margin-top: 10px;
+    font-size: 1.3rem;
+  }
+
+  #edit-user{
+    margin-top: 20px;
+    font-size: .9rem;
+  }
+
+  #otroGrupo h3{
+    font-size: 1.1rem;
+    margin-top: 0;
+  }
+
+  hr{
+    margin-bottom: -5%;
+  }
+}
